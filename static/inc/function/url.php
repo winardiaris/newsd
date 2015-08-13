@@ -10,7 +10,7 @@
 	}
 }
 
-function url_test($url_target){
+function url_test($media_url,$url_target){
 	if(check_internet($url_target)==1){
 		$html = file_get_html($url_target);
 	   $url_array=array();
@@ -29,6 +29,20 @@ function url_test($url_target){
 				}
 			}
 			else{
+				$url_get = real_url($media_url.$url_get);
+				
+				$valid_url = valid_url($url_get);
+				$exclude = exclude($url_get);
+				$check_domain = check_domain_from_db_media($url_get);
+				
+				
+				if($valid_url==1){
+					if($exclude==0){
+						if($check_domain>0){
+							array_push($url_array,$url_get);
+						}
+					}
+				}
 				
 				
 			}
@@ -41,8 +55,8 @@ function url_test($url_target){
 }
 
 
-function url_get($url_target){	
-	$array=url_test($url_target);
+function url_get($media_url,$url_target){	
+	$array=url_test($media_url,$url_target);
 	
 	if($array!=0){
 		$count = 0;
@@ -59,12 +73,12 @@ function url_get($url_target){
 		
 		if($count<5){
 			$count_2="";
-			$qry = mysql_query("select * from `url_data` where `url` like '%".UbahSimbol($url_target)."%' and `url_status`='1' limit 50 ")or die(mysql_error());
+			$qry = mysql_query("select * from `url_data` where `url` like '%".UbahSimbol($media_url)."%' and `url_status`='1' limit 50 ")or die(mysql_error());
 			//$qry = mysql_query("select * from `url_data` where `url` like '%detik.%' and `url_status`='1' limit 50 ")or die(mysql_error());
 			while($data=mysql_fetch_array($qry)){
-				$array=url_test(Balikin($data['url']));
+				$array=url_test($media_url,Balikin($data['url']));
 				
-				//bagian ini yang dirubah terkahir kali
+				
 				if($array!=0){
 					$uniq = array_map('unserialize', array_unique(array_map('serialize', $array)));
 					
@@ -81,12 +95,12 @@ function url_get($url_target){
 			}
 			if($count_2<5){
 				$count_1="";
-				$qry = mysql_query("select * from `url_data` where `url` like '%".UbahSimbol($url_target)."%' order by rand() limit 50 ")or die(mysql_error());
+				$qry = mysql_query("select * from `url_data` where `url` like '%".UbahSimbol($media_url)."%' order by rand() limit 50 ")or die(mysql_error());
 				//$qry = mysql_query("select * from `url_data` where `url` like '%detik.%' order by rand() limit 50 ")or die(mysql_error());
 				while($data=mysql_fetch_array($qry)){
-					$array=url_test(Balikin($data['url']));
+					$array=url_test($media_url,Balikin($data['url']));
 					
-					//bagian ini yang dirubah terkahir kali
+					
 					if($array!=0){
 						$uniq = array_map('unserialize', array_unique(array_map('serialize', $array)));
 						

@@ -32,7 +32,7 @@ foreach(media_prefix_list('1') as $prefix_list){
 				
 				if($container_){
 					foreach($html->find($container_) as $container ){
-						if($title_){
+						if($title_!="-"){
 							foreach($container->find($title_) as $a){
 								$title = $a->plaintext;
 							}
@@ -40,7 +40,7 @@ foreach(media_prefix_list('1') as $prefix_list){
 							$title = "-";
 						}
 						
-						if($date_){
+						if($date_!="-"){
 							foreach($container->find($date_) as $b){
 								$date = $b->plaintext;
 								$date = UbahXXX(UbahXXX(UbahBulan($date)));
@@ -52,7 +52,7 @@ foreach(media_prefix_list('1') as $prefix_list){
 							$date="" ;
 						}
 						
-						if($news_content_){
+						if($news_content_!="-"){
 							foreach($container->find($news_content_) as $c){
 								$news_content = $c->innertext;
 							}
@@ -60,7 +60,7 @@ foreach(media_prefix_list('1') as $prefix_list){
 							$news_content_="-";
 						}
 						
-						if($writer_){
+						if($writer_!="-"){
 							foreach($container->find($writer_) as $d){
 								$writer = $d->plaintext;
 							}
@@ -68,7 +68,7 @@ foreach(media_prefix_list('1') as $prefix_list){
 							$writer="-";
 						}
 						
-						if($image_){
+						if($image_!="-"){
 							foreach($container->find($image_) as $e){
 								$image = $e->src;
 							}
@@ -91,7 +91,7 @@ foreach(media_prefix_list('1') as $prefix_list){
 				echo "--------------------------------------------------------------------------------------------------------".PHP_EOL;
 				
 				
-				//save_content($kode,$media,UbahSimbol($title),UbahBulan($date),UbahSimbol($image),UbahSimbol($news_content),UbahSimbol($writer),UbahSimbol($target));
+				save_content($kode,$media,UbahSimbol($title),UbahBulan($date),UbahSimbol($image),UbahSimbol($news_content),UbahSimbol($writer),UbahSimbol($target));
 			}
 	}
 	

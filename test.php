@@ -13,7 +13,24 @@ include ("static/inc/function.php");
 include ("static/inc/simple_html_dom.php");
 
 
+//$media_url = "http://www.antaranews.com";
+//$target = "http://www.antaranews.com/berita/512124/jadwal-siaran-langsung-sepak-bola-15-17-agustus";
+
+//$html = file_get_html($target);
+//foreach ($html->find('a') as $url){
+	//$url_ = $url->href;
+	
+	//$valid = valid_url($url_);
+	//if($valid){
+		//$URL = $url_;
+	//}
+	//else{
+		//$URL = real_url($media_url.$url_);
 		
+	//}
+	//echo $URL.PHP_EOL;
+	
+//}	
 
 
 
@@ -35,6 +52,22 @@ include ("static/inc/simple_html_dom.php");
 
 //ubahsimbol
 //echo "<textarea>".ubahSimbol('article.article-detail')."</textarea>";
+
+
+
+foreach(media_list("order by `media_name` asc") as $media_list){
+	$media_id = $media_list[0];
+	$media_name = $media_list[1];
+	$media_url = $media_list[2];
+	
+	//url_get($media_url,$media_url);
+	
+	$ganti = UbahSimbol(substr($media_url,0,-1));
+	
+	$q = mysql_query("update `media` set `media_url`='$ganti' where `media_id`='$media_id'") or die(mysql_error());
+	
+}
+
 
 
 
