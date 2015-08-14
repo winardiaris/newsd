@@ -262,7 +262,8 @@ function curPageURL() {
 }
 //notif
 function send_notif($str){
-	echo '<script>alert("'.$str.'");history.back();</script>';
+	//echo '<script>alert("'.$str.'");history.back();</script>';
+	echo '<script>alert("'.$str.'");</script>';
 }
 
 function check_internet($target){
