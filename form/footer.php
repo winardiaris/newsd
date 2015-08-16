@@ -16,6 +16,9 @@ $(document).ready(function() {
      $('#media-table2').DataTable({
                 responsive: true
       });
+     $('#rss-table').DataTable({
+                responsive: true
+      });
       
       
 		$('#UbahXXX').change(function() {
@@ -28,6 +31,9 @@ $(document).ready(function() {
 				}
 			});
 		});
+	$('.clear').focus(function() {
+		$(this).val("");
+	});
 });
 </script>
     

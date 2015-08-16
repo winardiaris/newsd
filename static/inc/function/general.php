@@ -140,29 +140,46 @@ function UbahXXX($str){
  
 function UbahBulan1($str){
 	$str = trim(htmlentities(htmlspecialchars($str)));
-	$search = array ("'Januari'","'Februari'","'Maret'","'April'","'Mei'","'Juni'","'Juli'","'Agustus'","'September'","'Oktober'","'Nopember'","'Desember'");
+	$search = array ("'januari'","'februari'","'maret'","'april'","'mei'","'juni'","'juli'","'agustus'","'september'","'oktober'","'nopember'","'desember'");
 	$replace = array ("01","02","03","04","05","06","07","08","09","10","11","12");
 	$str = preg_replace($search,$replace,$str);
 	return $str;
 }
 function UbahBulan2($str){
 	$str = trim(htmlentities(htmlspecialchars($str)));
-	$search = array ("'January'","'February'","'March'","'April'","'May'","'June'","'July'","'August'","'September'","'October'","'November'","'December'");
+	$search = array ("'january'","'february'","'march'","'april'","'may'","'june'","'july'","'august'","'september'","'october'","'november'","'december'");
 	$replace = array ("01","02","03","04","05","06","07","08","09","10","11","12");
 	$str = preg_replace($search,$replace,$str);
 	return $str;
 }
 function UbahBulan3($str){
 	$str = trim(htmlentities(htmlspecialchars($str)));
-	$search = array ("'Jan'","'Feb'","'Mar'","'Apr'","'May'","'Jun'","'Jul'","'Agu'","'Sep'","'Okt'","'Nov'","'Des'");
+	$search = array ("'jan'","'feb'","'mar'","'apr'","'mei'","'jun'","'jul'","'agu'","'sep'","'okt'","'nov'","'des'");
 	$replace = array ("01","02","03","04","05","06","07","08","09","10","11","12");
 	$str = preg_replace($search,$replace,$str);
 	return $str;
 }
+function UbahBulan4($str){
+	$str = trim(htmlentities(htmlspecialchars($str)));
+	$search = array ("'jan'","'feb'","'mar'","'apr'","'may'","'jun'","'jul'","'aug'","'sep'","'oct'","'nov'","'dec'");
+	$replace = array ("01","02","03","04","05","06","07","08","09","10","11","12");
+	$str = preg_replace($search,$replace,$str);
+	return $str;
+}
+function UbahHari($str){
+	$str = trim(htmlentities(htmlspecialchars($str)));
+	$search = array ("'Jum\'at'","'jum\'at'");
+	$replace = array ("Jumat","jumat");
+	$str = preg_replace($search,$replace,$str);
+	return $str;
+}
 function UbahBulan($str){
-	$str=UbahBulan1($str);
-	$str=UbahBulan2($str);
-	$str=UbahBulan3($str);
+	$str = strtolower($str);
+	$str = UbahHari($str);
+	$str = UbahBulan1($str);
+	$str = UbahBulan2($str);
+	$str = UbahBulan3($str);
+	$str = UbahBulan4($str);
 	return $str;
 	
 }
@@ -262,8 +279,7 @@ function curPageURL() {
 }
 //notif
 function send_notif($str){
-	//echo '<script>alert("'.$str.'");history.back();</script>';
-	echo '<script>alert("'.$str.'");</script>';
+	echo '<script>alert("'.$str.'");history.back();</script>';
 }
 
 function check_internet($target){

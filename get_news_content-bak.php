@@ -30,7 +30,7 @@ foreach(media_prefix_list('1') as $prefix_list){
 				$html = file_get_html($target);
 				
 				
-				if($container_!="-"){
+				if($container_){
 					foreach($html->find($container_) as $container ){
 						if($title_!="-"){
 							foreach($container->find($title_) as $a){
@@ -52,7 +52,7 @@ foreach(media_prefix_list('1') as $prefix_list){
 							$date="" ;
 						}
 						
-						if($news_content_ !="-"){
+						if($news_content_!="-"){
 							foreach($container->find($news_content_) as $c){
 								$news_content = $c->innertext;
 							}
@@ -99,3 +99,4 @@ foreach(media_prefix_list('1') as $prefix_list){
 
 
 ?>
+

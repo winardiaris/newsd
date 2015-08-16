@@ -9,7 +9,7 @@ if(isset($_GET['op'])){
 	$data = $_GET['data'];
 	
 	if($op=="UbahXXX"){
-		echo UbahXXX($data);
+		echo UbahXXX(UbahXXX($data));
 	}
 	
 	

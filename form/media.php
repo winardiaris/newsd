@@ -7,10 +7,10 @@
 		if($pos === false){
 			$media_url = "http://".$media_url;
 		
-			$check = substr($media_url,-1);
-				if($check !="/"){
-					$media_url = $media_url."/";
-				}
+			//$check = substr($media_url,-1);
+				//if($check !="/"){
+					//$media_url = $media_url."/";
+				//}
 		}
 
 		media_save($media_name,$media_url);

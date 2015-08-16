@@ -17,7 +17,9 @@
 					<li>
 						 <a href="?m=list_url"><i class="fa fa-table fa-fw"></i> List URL</a>
 					</li>
-					
+					<li>
+						 <a href="?m=rss"><i class="fa fa-table fa-fw"></i> RSS</a>
+					</li>
 					
 					
 					

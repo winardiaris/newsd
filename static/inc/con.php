@@ -1,5 +1,5 @@
 <?php
-	define("__BASE_URL__"	,"http://192.168.2.115/newsd/");
+	define("__BASE_URL__"	,"http://localhost/newsd/");
 	define("__DB_SERVER__"	,"localhost");
 	define("__DB_NAME__"		,"newsd");
 	define("__DB_USER__"		,"clipdig");

@@ -1,5 +1,5 @@
 <?php
- 	$edit=0;
+ 	$edit="";
  	
  	if(isset($_POST['media_prefix_save'])){
 		$media_prefix_url				= UbahSimbol($_POST['media_prefix_url']);
@@ -66,6 +66,15 @@
 			$media_prefix_status =  Balikin($data[10]);
 			
 		}
+		elseif($op=="delete"){
+			$id=ifset('id');
+			
+			
+			
+			$q = mysql_query("update `media_prefix` set `media_prefix_status`='2' where `media_prefix_id`='$id'")or die(mysql_error());
+			send_notif("delete success");
+			
+		}
 		
 	}
 
@@ -79,9 +88,18 @@
 		<label>Media URL prefix</label>
 			<input name="media_prefix_url" class="form-control" placeholder="www.domain.com/read/  (without http:// or https://)" <?php if($edit==1)echo 'value="'.$media_prefix_url.'"'; ?>> 
 		<label>Media</label>
-		<select class="form-control" name="media_">
+		<select class="form-control" name="media_" >
 			<?php
-				foreach(media_list('order by `media_name`') as $list){echo '<option value="'.$list[0].'">'.$list[0].'</option>';}			
+				foreach(media_list('order by `media_name`') as $list){
+					echo '<option value="'.$list[0].'"';
+					      if($edit==1){
+								if($list[0]==$media_){
+									echo " selected ";
+								}
+							}
+					echo '>'.$list[0].'</option>';
+					
+				}			
 			?>
 			</select>
 		<label>Content Container</label>
@@ -146,12 +164,15 @@
 	</thead>
 	<tbody>
 		<?php
-		 $qry = mysql_query("select * from `media_prefix` order by `media_prefix_url` asc ")or die(mysql_error());
+		 $qry = mysql_query("select * from `media_prefix` where `media_prefix_status`!='2' order by `media_prefix_url` asc ")or die(mysql_error());
 		 $q = "";$no=1;
 		 while($data=mysql_fetch_array($qry)){
 			   $q .='<tr>
 					<td align="right" width="60px">'.$no++.'</td>
-					<td><a href="?m='.ifset('m').'&op=edit&id='.$data['media_prefix_id'].'"><i class="fa fa-edit"></i></a></td>
+					<td >
+						<a href="?m='.ifset('m').'&op=edit&id='.$data['media_prefix_id'].'" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+						<a href="?m='.ifset('m').'&op=delete&id='.$data['media_prefix_id'].'" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+					</td>
 					<td>'.Balikin($data['media_prefix_url']).'</td>
 					<td>'.Balikin($data['media_']).'</td>
 					<td>'.Balikin($data['media_prefix_container']).'</td>

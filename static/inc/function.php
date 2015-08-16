@@ -4,6 +4,7 @@
 include ("function/general.php");
 include ("function/media.php");
 include ("function/url.php");
+include ("function/rss.php");
 include ("function/main.php");
 include ("function/main_bak.php");
 include ("function/gui.php");

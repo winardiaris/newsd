@@ -147,7 +147,20 @@ function media_prefix_list($status){
 	$media_prefix_query = mysql_query("select * from `media_prefix` $where order by rand() ")or die(mysql_error());
 	
 	while($data = mysql_fetch_array($media_prefix_query)){
-		array_push($media_prefix_array,array($data['media_prefix_url'],$data['media_prefix_container'],$data['media_prefix_title'],$data['media_prefix_date'],$data['media_prefix_date_split'],$data['media_prefix_news_content'],$data['media_prefix_writer'],$data['media_prefix_image'],$data['media_prefix_status'],$data['media_']));
+		array_push($media_prefix_array,
+			array(
+				$data['media_prefix_url'],
+				$data['media_prefix_container'],
+				$data['media_prefix_title'],
+				$data['media_prefix_date'],
+				$data['media_prefix_date_split'],
+				$data['media_prefix_news_content'],
+				$data['media_prefix_writer'],
+				$data['media_prefix_image'],
+				$data['media_prefix_status'],
+				$data['media_']
+			)
+		);
 	}
 	
 	return $media_prefix_array;

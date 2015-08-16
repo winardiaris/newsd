@@ -157,8 +157,8 @@ function check_domain_from_db_media($url){
 function url_save($url){
 	$count		= 0;
 	$url_id		= md5($url);
-	$url			= UbahSimbol($url);
-	$url_status	= 0;
+	$url		= UbahSimbol($url);
+	$url_status	= 0; //0= belum terdapat data berita
 	
 	$url_query = mysql_query("insert into `url_data` values('$url_id','$url','$url_status')")or die(mysql_error());
 	

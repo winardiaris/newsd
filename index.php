@@ -25,7 +25,9 @@ if(!empty($_GET['m'])){
 		case "list_url":
 			$view = "form/list_url.php";
 			break;
-		
+		case "rss":
+			$view = "form/rss.php";
+			break;
 		
 			
 		default:
