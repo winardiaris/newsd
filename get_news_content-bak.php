@@ -5,7 +5,7 @@ include ("static/inc/simple_html_dom.php");
 
 
 
-foreach(media_prefix_list('1') as $prefix_list){
+foreach(list_media_prefix('1') as $prefix_list){
 	//print_r($prefix_list);
 	
 	foreach(url_find_media_prefix($prefix_list[0]) as $list_find){

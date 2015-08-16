@@ -22,7 +22,7 @@ for($i=0;$i<$count_prefix;$i++){
 	$media_prefix_status 		= $prefix_list[$i][8];
 	$media_ 					= Balikin($prefix_list[$i][9]);
 	
-	foreach(find_url_like_prefix($media_prefix_url) as $list_find){
+	foreach(find_url_like_prefix_rss($media_prefix_url) as $list_find){
 		
 		$kode 	= Balikin($list_find[0]);
 		$target = Balikin($list_find[1]);
@@ -107,6 +107,7 @@ for($i=0;$i<$count_prefix;$i++){
 	
 	
 		save_content($kode,$media_,UbahSimbol($title),UbahBulan($date),UbahSimbol($image),UbahSimbol($news_content),UbahSimbol($writer),UbahSimbol($target));
+		update_status_url_rss($kode,$target);
 		}
 	}
 }

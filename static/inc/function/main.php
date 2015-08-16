@@ -30,7 +30,7 @@ function save_content($kode,$media,$title,$date,$image,$news_content,$writer,$ur
 }
 
 function update_status_url($url_id){
-		$update_status_url = mysql_query("update `url_data` set `url_status`='1' where `url_id`='$url_id'")or die(mysql_error());
+	$update_status_url = mysql_query("update `url_data` set `url_status`='1' where `url_id`='$url_id'")or die(mysql_error());
 	if($update_status_url){
 		return 1;
 	}
@@ -39,6 +39,9 @@ function update_status_url($url_id){
 	}
 	
 }
+
+
+
 
 
 ?>

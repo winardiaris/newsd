@@ -31,15 +31,30 @@ function rss_save($rss_url,$rss_media){
 	
 	
 }
-function rss_list($order){
+function rss_list($order=null){
 	
 	$rss_list_array = array();
 	$rss_list_query = mysql_query("select * from `rss_data` $order ")or die(mysql_error());
 	
 	while($data = mysql_fetch_array($rss_list_query)){
-		array_push($rss_list_array,array($data['rss_id'],$data['rss_name'],Balikin($data['rss_url'])));
+		array_push($rss_list_array,array($data['rss_id'],$data['rss_media'],Balikin($data['rss_url'])));
 	}
 	
+	return $rss_list_array;
+}
+
+function find_element_from_rss($rss_url,$find_element=null){
+	$rss = simplexml_load_file($rss_url);
+	$rss_list_array=array();
+	foreach($rss->channel->item as $item){
+		if(!isset($find_element)){
+			$finded = (string) $item->link;
+		}
+		else{
+			$finded = (string) $item->$find_element;
+		}
+		array_push($rss_list_array,$finded);
+	}
 	return $rss_list_array;
 }
 ?>

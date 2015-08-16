@@ -154,13 +154,20 @@ function check_domain_from_db_media($url){
 }
 
 
-function url_save($url){
+function url_save($url,$status=null){
 	$count		= 0;
 	$url_id		= md5($url);
 	$url		= UbahSimbol($url);
 	$url_status	= 0; //0= belum terdapat data berita
+	if(!isset($status)){
+		$url_query = mysql_query("insert into `url_data` values('$url_id','$url','$url_status')")or die(mysql_error());
+	}
+	else{
+		$url_query = mysql_query("insert into `url_data` values('$url_id','$url','$status')")or die(mysql_error());
+	}
 	
-	$url_query = mysql_query("insert into `url_data` values('$url_id','$url','$url_status')")or die(mysql_error());
+	
+	
 	
 	if($url_query){
 		$count +=1;
@@ -171,7 +178,7 @@ function url_save($url){
 
 	return $count;
 }
-function url_find_media_prefix($url_prefix){
+function find_url_like_prefix($url_prefix){
 	$url_prefix = UbahSimbol($url_prefix);
 	$array = array();
 	$qry = mysql_query("select * from `url_data`  where `url` like '%$url_prefix%'  and `url_status`='0' order by `url`");
@@ -199,6 +206,69 @@ function exclude($url){
 
 }
 
+function check_url_rss($url_id){
+	$qry = mysql_query("SELECT count(*) as `ada` FROM `url_data_tmp` WHERE `url_id`='$url_id'")or die(mysql_error());
+	$data = mysql_fetch_array($qry);
+	if($data['ada']>0){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+
+function save_url_rss($url){
+	$count		= 0;
+	$url_id		= md5($url);
+	$url		= UbahSimbol($url);
+	$url_status	= 0; //0= belum terdapat data berita
+	
+	if(check_url_rss($url_id)==0){
+		$url_query = mysql_query("insert into `url_data_tmp` values('$url_id','$url','$url_status')")or die(mysql_error());
+		if($url_query){
+			$count +=1;
+		}
+		else{
+			$count +0;
+		}
+		
+	}
+
+	return $count;
+}
+
+function find_url_like_prefix_rss($url_prefix){
+	$url_prefix = UbahSimbol($url_prefix);
+	$array = array();
+	$qry = mysql_query("select * from `url_data_tmp`  where `url` like '%$url_prefix%'  and `url_status`='0' order by `url`");
+	while($data=mysql_fetch_array($qry)){
+		array_push($array,array($data['url_id'],$data['url'],$data['url_status']));
+	}
+	return $array;
+	
+}
+function delete_tmp($url_id){
+	mysql_query("delete from `url_data_tmp` where `url_id`='$url_id'")or die(mysql_error());
+}
+function update_status_url_rss($url_id,$url){
+	//$update_status_url = mysql_query("update `url_data_tmp` set `url_status`='1' where `url_id`='$url_id'")or die(mysql_error());
+	
+	if(check_url_from_db($url_id)==0){
+		
+		// move tmp to data  
+		save_url($url,"1");
+		delete_tmp($url_id);
+	}
+	
+	//if($update_status_url){
+		//return 1;
+	//}
+	//else{
+		//return 0;
+	//}
+	
+}
 
 
 

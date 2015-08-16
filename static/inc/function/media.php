@@ -136,7 +136,7 @@ function media_prefix_update($media_prefix_id,$media_prefix_url,$media_prefix_co
 	}
 }
 
-function media_prefix_list($status){
+function list_media_prefix($status){
 	if($status!="all"){
 		$where="WHERE `media_prefix_status`='$status' ";
 	}
