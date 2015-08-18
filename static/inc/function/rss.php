@@ -98,7 +98,7 @@ function update_status_url_rss($url_id,$url){
 	if(check_url_from_db($url_id)==0){
 		
 		// move tmp to data  
-		save_url($url,"1");
+		url_save($url,"1");
 		delete_tmp($url_id);
 	}
 	
