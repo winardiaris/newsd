@@ -57,4 +57,58 @@ function find_element_from_rss($rss_url,$find_element=null){
 	}
 	return $rss_list_array;
 }
+
+
+function save_url_rss($url){
+	$count		= 0;
+	$url_id		= md5($url);
+	$url		= UbahSimbol($url);
+	$url_status	= 0; //0= belum terdapat data berita
+	
+	if(check_url_rss($url_id)==0){
+		$url_query = mysql_query("insert into `url_data_tmp` values('$url_id','$url','$url_status')")or die(mysql_error());
+		if($url_query){
+			$count +=1;
+		}
+		else{
+			$count +0;
+		}
+		
+	}
+
+	return $count;
+}
+
+function find_url_like_prefix_rss($url_prefix){
+	$url_prefix = UbahSimbol($url_prefix);
+	$array = array();
+	$qry = mysql_query("select * from `url_data_tmp`  where `url` like '%$url_prefix%'  and `url_status`='0' order by `url`");
+	while($data=mysql_fetch_array($qry)){
+		array_push($array,array($data['url_id'],$data['url'],$data['url_status']));
+	}
+	return $array;
+	
+}
+function delete_tmp($url_id){
+	mysql_query("delete from `url_data_tmp` where `url_id`='$url_id'")or die(mysql_error());
+}
+function update_status_url_rss($url_id,$url){
+	//$update_status_url = mysql_query("update `url_data_tmp` set `url_status`='1' where `url_id`='$url_id'")or die(mysql_error());
+	
+	if(check_url_from_db($url_id)==0){
+		
+		// move tmp to data  
+		save_url($url,"1");
+		delete_tmp($url_id);
+	}
+	
+	//if($update_status_url){
+		//return 1;
+	//}
+	//else{
+		//return 0;
+	//}
+	
+}
+
 ?>
