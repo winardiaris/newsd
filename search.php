@@ -13,7 +13,7 @@ include ("static/inc/function.php");
 $WHERE ="where ";
 if(isset($_GET['search'])){
 	$search = ifset('search');
-	$WHERE .= " (`media` like '%$search%' AND `news_content` like '%$search%' or `url` like '%$search%' or `title` like '%$search%' or `writer` like '%$search%') and ";
+	$WHERE .= " (`media` like '%$search%' or `news_content` like '%$search%' or `url` like '%$search%' or `title` like '%$search%' or `writer` like '%$search%') and ";
 
 }
 

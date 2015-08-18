@@ -68,16 +68,17 @@ function media_prefix_check($media_prefix_id){
 }
 
 function media_prefix_save($media_prefix_url,$media_prefix_container,$media_prefix_title,$media_prefix_date,$media_prefix_date_split,$media_prefix_news_content,$media_prefix_writer,$media_prefix_image,$media_){
-	$media_prefix_id 				= md5($media_prefix_url);
+	
+	$media_prefix_id 			= md5($media_prefix_url);
 	$media_prefix_url 			= UbahSimbol($media_prefix_url);
-	$media_ 							= UbahSimbol($media_);
+	$media_ 					= UbahSimbol($media_);
 	$media_prefix_container 	= UbahSimbol($media_prefix_container);
-	$media_prefix_title 			= UbahSimbol($media_prefix_title);
+	$media_prefix_title 		= UbahSimbol($media_prefix_title);
 	$media_prefix_date 			= UbahSimbol($media_prefix_date);
 	$media_prefix_date_split	= UbahSimbol($media_prefix_date_split);
 	$media_prefix_news_content	= UbahSimbol($media_prefix_news_content);
 	$media_prefix_writer 		= UbahSimbol($media_prefix_writer);
-	$media_prefix_image 			= UbahSimbol($media_prefix_image);
+	$media_prefix_image 		= UbahSimbol($media_prefix_image);
 	
 	if(media_prefix_check($media_prefix_id)==0){
 		$media_prefix_query = mysql_query("
