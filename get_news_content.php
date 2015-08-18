@@ -63,7 +63,7 @@ for($i=0;$i<$count_prefix;$i++){
 					//--NEWS CONTENT
 					if($media_prefix_news_content!="-"){
 						foreach($container->find($media_prefix_news_content) as $c){
-							$news_content = $c->innertext;
+							$news_content = $c->plaintext;
 						}
 					}else{
 							$news_content="-";
