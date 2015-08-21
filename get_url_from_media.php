@@ -11,28 +11,7 @@ foreach(media_list("order by `media_name` asc") as $media_list){
 	$media_url = $media_list[2];
 	
 	url_get($media_url,$media_url);
-	
 
 }
-
-//print_r(media_list("order by rand()"));
-
-
-// The "i" after the pattern delimiter indicates a case-insensitive search
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>

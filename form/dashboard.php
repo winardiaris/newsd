@@ -1,9 +1,22 @@
 <h1>Dashboard</h1>
 
+<hr>
+<a href="?m=dashboard&op=start" class="btn btn-primary">Start</a>
+<a href="?m=dashboard&op=stop" class="btn btn-primary">Stop</a>
 
 
-<textarea><?php 
+<?php
+$m = ifset('m');
+$op = ifset('op');
 
-  echo real_url('http://detik.feedsportal.com/c/33613/f/656083/s/4903f8b4/sc/3/l/0Lnews0Bdetik0N0Cread0C20A150C0A80C160C0A310A0A60C29930A890C10A0Creshuffle0Ekabinet0Ediharapkan0Epacu0Ekinerja0Epemerintah/story01.htm'); 
+if($op=='start'){
+	shell_exec("/var/www/html/newsd/bin/newsd start 2>&1");
+	send_notif('Started');
+}
+elseif($op=='stop'){
+	shell_exec("/var/www/html/newsd/bin/newsd stop 2>&1");
+	send_notif('Stoped');
+}
 
-?></textarea>
+
+?>

@@ -13,14 +13,13 @@
 function url_test($media_url,$url_target){
 	if(check_internet($url_target)==1){
 		$html = file_get_html($url_target);
-	   $url_array=array();
+		$url_array=array();
 		foreach($html->find('a') as $data){
 			$url_get = $data->href;
 			$valid_url = valid_url($url_get);
 			$exclude = exclude($url_get);
 			$check_domain = check_domain_from_db_media($url_get);
-			
-			
+
 			if($valid_url==1){
 				if($exclude==0){
 					if($check_domain>0){
@@ -56,74 +55,78 @@ function url_test($media_url,$url_target){
 
 
 function url_get($media_url,$url_target){	
-	$array=url_test($media_url,$url_target);
 	
+	$array=url_test($media_url,$url_target);
 	if($array!=0){
-		$count = 0;
 		$uniq = array_map('unserialize', array_unique(array_map('serialize', $array)));
 		
 		foreach($uniq as $urls){
 			$url_id = md5($urls);
 			if(check_url_from_db($url_id)==0){
-				printf($urls.PHP_EOL);
-				$count += url_save($urls);
+				//printf($urls.PHP_EOL);
+				url_save($urls);
+			}
+		}
+		
+		
+		foreach(media_list("order by rand()") as $media_list){
+			$media_url0 = Balikin($media_list[2]);
+			$array0=url_test($media_url0,$media_url0);
+			if($array0!=0){
+				$uniq0 = array_map('unserialize', array_unique(array_map('serialize', $array0)));
+				
+				foreach($uniq0 as $urls0){
+					$url_id0 = md5($urls0);
+					if(check_url_from_db($url_id0)==0){
+						//printf($urls0.PHP_EOL);
+						url_save($urls1);
+					}
+					
+				}
+			}
+		}
+		
+		
+		$qry1 = mysql_query("select * from `url_data` where `url` like '%".UbahSimbol($media_url)."%' and `url_status`='1' limit 20 ")or die(mysql_error());
+		while($data1=mysql_fetch_array($qry1)){
+			$array1=url_test($media_url,Balikin($data1['url']));
+			
+			
+			if($array1!=0){
+				$uniq1 = array_map('unserialize', array_unique(array_map('serialize', $array1)));
+				
+				foreach($uniq1 as $urls1){
+					$url_id1 = md5($urls1);
+					if(check_url_from_db($url_id1)==0){
+						//printf($urls1.PHP_EOL);
+						url_save($urls1);
+					}
+					
+				}
 			}
 			
 		}
+		//------------
+		$qry2 = mysql_query("select * from `url_data` where `url` like '%".UbahSimbol($media_url)."%' order by rand() limit 20 ")or die(mysql_error());
+		while($data2=mysql_fetch_array($qry2)){
+			$array2=url_test($media_url2,Balikin($data2['url']));
+			
+			if($array2!=0){
+				$uniq2 = array_map('unserialize', array_unique(array_map('serialize', $array2)));
+				
+				foreach($uniq2 as $urls2){
+					$url_id2 = md5($urls2);
+					if(check_url_from_db($url_id2)==0){
+						//printf($urls2.PHP_EOL);
+						url_save($urls2);
+					}
+					
+				}
+			}
+		}
 		
-		if($count<5){
-			$count_2="";
-			$qry = mysql_query("select * from `url_data` where `url` like '%".UbahSimbol($media_url)."%' and `url_status`='1' limit 50 ")or die(mysql_error());
-			//$qry = mysql_query("select * from `url_data` where `url` like '%detik.%' and `url_status`='1' limit 50 ")or die(mysql_error());
-			while($data=mysql_fetch_array($qry)){
-				$array=url_test($media_url,Balikin($data['url']));
-				
-				
-				if($array!=0){
-					$uniq = array_map('unserialize', array_unique(array_map('serialize', $array)));
-					
-					foreach($uniq as $urls){
-						$url_id = md5($urls);
-						if(check_url_from_db($url_id)==0){
-							printf($urls.PHP_EOL);
-							$count_2 += url_save($urls);
-						}
-						
-					}
-				}
-				
-			}
-			if($count_2<5){
-				$count_1="";
-				$qry = mysql_query("select * from `url_data` where `url` like '%".UbahSimbol($media_url)."%' order by rand() limit 50 ")or die(mysql_error());
-				//$qry = mysql_query("select * from `url_data` where `url` like '%detik.%' order by rand() limit 50 ")or die(mysql_error());
-				while($data=mysql_fetch_array($qry)){
-					$array=url_test($media_url,Balikin($data['url']));
-					
-					
-					if($array!=0){
-						$uniq = array_map('unserialize', array_unique(array_map('serialize', $array)));
-						
-						foreach($uniq as $urls){
-							$url_id = md5($urls);
-							if(check_url_from_db($url_id)==0){
-								printf($urls.PHP_EOL);
-								$count_1 += url_save($urls);
-							}
-							
-						}
-					}
-					
-				}
-				
-				
-			}
-			
-			
-		}	
 	}
 	
-	//echo $count."<br>";
 	
 	
 }
@@ -205,21 +208,5 @@ function exclude($url){
 	return $found;
 
 }
-
-function check_url_rss($url_id){
-	$qry = mysql_query("SELECT count(*) as `ada` FROM `url_data_tmp` WHERE `url_id`='$url_id'")or die(mysql_error());
-	$data = mysql_fetch_array($qry);
-	if($data['ada']>0){
-		return 1;
-	}
-	else{
-		return 0;
-	}
-}
-
-
-
-
-
 
 ?>

@@ -57,9 +57,15 @@ function get_media_from_url($url){
 	$data = mysql_fetch_array($find_media_from_url_query);
 	
 	return $data['media_name'];
-	
-	
 }
+function get_media_from_media_data($media_name,$get_data){
+	$get_media_from_media_name = mysql_query("select * from `media` where `media_name`='$media_name' limit 1")or die(mysql_error());
+	$data = mysql_fetch_array($get_media_from_media_name);
+	
+	return $data[$get_data];
+}
+
+
 
 function media_prefix_check($media_prefix_id){
 	$media_prefix_query = mysql_query("select * from `media_prefix` where `media_prefix_id`='$media_prefix_id'")or die(mysql_error());
@@ -174,7 +180,6 @@ function media_skip($media_name){
 	$count = mysql_num_rows($media_skip);
 	return $count;
 }
-
 
 
 

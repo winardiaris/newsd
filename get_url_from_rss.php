@@ -16,7 +16,7 @@ foreach(rss_list() as $rss){
 		
 		$count = save_url_rss($finded_url);
 		
-		echo $finded_url." => ".$count.PHP_EOL;
+		//echo $finded_url." => ".$count.PHP_EOL;
 			
 	}
 	

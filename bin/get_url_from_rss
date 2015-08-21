@@ -1,0 +1,6 @@
+#!/bin/bash
+FOLDER="/var/www/html/newsd/"
+BERKAS="get_url_from_rss.php"
+
+cd $FOLDER
+php $BERKAS > $FOLDER"log/"$BERKAS".log" &

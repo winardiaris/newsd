@@ -1,0 +1,25 @@
+#!/bin/bash
+KOMAN=$1
+FOLDER="/var/www/html/newsd/bin"
+
+function start {
+	cd $FOLDER
+	bash get_news_content
+	bash get_news_content_rss
+	bash get_url_from_media
+	bash get_url_from_rss
+}
+
+function stop {
+	killall php
+}
+
+if [ $KOMAN = "start" ] || [ $KOMAN = "START" ]
+then
+	start
+elif [ $KOMAN = "stop" ] || [ $KOMAN = "STOP" ]
+then
+	stop             
+else
+	echo " $KOMAN tidak ada"
+fi

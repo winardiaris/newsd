@@ -57,7 +57,16 @@ function find_element_from_rss($rss_url,$find_element=null){
 	}
 	return $rss_list_array;
 }
-
+function check_url_rss($url_id){
+	$qry = mysql_query("SELECT count(*) as `ada` FROM `url_data_tmp` WHERE `url_id`='$url_id'")or die(mysql_error());
+	$data = mysql_fetch_array($qry);
+	if($data['ada']>0){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
 
 function save_url_rss($url){
 	$count		= 0;
@@ -89,17 +98,16 @@ function find_url_like_prefix_rss($url_prefix){
 	return $array;
 	
 }
-function delete_tmp($url_id){
-	mysql_query("delete from `url_data_tmp` where `url_id`='$url_id'")or die(mysql_error());
-}
+
 function update_status_url_rss($url_id,$url){
-	//$update_status_url = mysql_query("update `url_data_tmp` set `url_status`='1' where `url_id`='$url_id'")or die(mysql_error());
+	
 	
 	if(check_url_from_db($url_id)==0){
 		
 		// move tmp to data  
 		url_save($url,"1");
-		delete_tmp($url_id);
+		//delete_tmp($url_id);
+		mysql_query("update `url_data_tmp` set `url_status`='1' where `url_id`='$url_id'")or die(mysql_error());
 	}
 	
 	//if($update_status_url){

@@ -95,15 +95,15 @@ for($i=0;$i<$count_prefix;$i++){
 			}
 		
 		
-		echo "KODE:".$kode.PHP_EOL;
-		echo "URL:".Balikin($target).PHP_EOL;
-		echo "MEDIA:$media_".PHP_EOL;
-		echo "TITLE:$title".PHP_EOL;
-		echo "DATE:".$date.PHP_EOL;
-		echo "NEWS CONTENT:$news_content".PHP_EOL;
-		echo "WRITER:$writer".PHP_EOL;
-		echo "IMAGE:$image".PHP_EOL;
-		echo "--------------------------------------------------------------------------------------------------------".PHP_EOL;
+		//echo "KODE:".$kode.PHP_EOL;
+		//echo "URL:".Balikin($target).PHP_EOL;
+		//echo "MEDIA:$media_".PHP_EOL;
+		//echo "TITLE:$title".PHP_EOL;
+		//echo "DATE:".$date.PHP_EOL;
+		//echo "NEWS CONTENT:$news_content".PHP_EOL;
+		//echo "WRITER:$writer".PHP_EOL;
+		//echo "IMAGE:$image".PHP_EOL;
+		//echo "--------------------------------------------------------------------------------------------------------".PHP_EOL;
 	
 	
 		save_content($kode,$media_,UbahSimbol($title),UbahBulan($date),UbahSimbol($image),UbahSimbol($news_content),UbahSimbol($writer),UbahSimbol($target));
