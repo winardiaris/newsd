@@ -29,7 +29,7 @@ if(isset($_GET['date'])){
 
 $WHERE = substr($WHERE,0,(strlen($WHERE)-5));
 
-$content_data = mysql_query("select * from `data` $WHERE ") or die(mysql_error());
+$content_data = mysql_query("select * from `data` $WHERE order by `date` desc ") or die(mysql_error());
 $count_data = mysql_num_rows($content_data);
 	echo '<div itemprop="count_data">'.$count_data.'</div>';
 
