@@ -19,7 +19,6 @@ function media_save($media_name,$media_url){
 				}else{
 					send_notif("media cant save");
 				}
-					
 			}
 			else{
 				send_notif("media in use");
@@ -28,15 +27,10 @@ function media_save($media_name,$media_url){
 		else{
 			send_notif("is not valid URL");
 		}
-		
-		
 	}
 	else{
 		send_notif("is not valid URL");
 	}
-	
-	
-	
 }
 function media_list($order){
 	

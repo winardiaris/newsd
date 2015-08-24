@@ -11,6 +11,16 @@
 
 		rss_save($rss_url,$rss_media);
 	}
+	elseif(isset($_GET['op'])){
+		$op=$_GET['op'];
+		if($op=="delete"){
+			$id=ifset('id');
+			
+			$q = mysql_query("update `rss_data` set `rss_status`='2' where `rss_id`='$id'")or die(mysql_error());
+			send_notif("delete success");
+			
+		}
+	}
 
 ?>
 
@@ -47,6 +57,7 @@
 <table class="table table-striped table-bordered table-hover" id="rss-table">
 	<thead>
 		<tr>
+			<th>action</th>
 			<th>no</th>
 			<th>RSS Media</th>
 			<th>url</th>
@@ -54,10 +65,11 @@
 	</thead>
 	<tbody>
 		<?php
-		 $qry = mysql_query("select * from `rss_data` order by `rss_media` asc ")or die(mysql_error());
+		 $qry = mysql_query("select * from `rss_data` where `rss_status` !='2' order by `rss_media` asc ")or die(mysql_error());
 		 $q = "";$no=1;
 		 while($data=mysql_fetch_array($qry)){
 			   $q .='<tr>
+					<td><a href="?m='.ifset('m').'&op=delete&id='.$data['rss_id'].'" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
 					<td align="right" width="60px">'.$no++.'</td>
 					<td>'.$data['rss_media'].'</td>
 					<td><a href="'.Balikin($data['rss_url']).'" target="_blank">'.Balikin($data['rss_url']).'</a></td>

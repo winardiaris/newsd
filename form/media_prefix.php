@@ -137,8 +137,7 @@
 				echo '<input type="hidden" name="media_prefix_id" value="'.$id.'">';
 				echo '<input type="hidden" name="media_prefix_status" value="'.$media_prefix_status.'">';
 			}
-			
-			
+		
 			?>
 		
 		<hr>
