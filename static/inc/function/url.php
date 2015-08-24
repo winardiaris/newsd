@@ -19,11 +19,14 @@ function url_test($media_url,$url_target){
 			$valid_url = valid_url($url_get);
 			$exclude = exclude($url_get);
 			$check_domain = check_domain_from_db_media($url_get);
+			$check_prefix_enable = check_prefix_enable($url_get);
 
 			if($valid_url==1){
 				if($exclude==0){
 					if($check_domain>0){
-						array_push($url_array,$url_get);
+						if($check_prefix_enable>0){
+							array_push($url_array,$url_get);
+						}
 					}
 				}
 			}
@@ -38,7 +41,9 @@ function url_test($media_url,$url_target){
 				if($valid_url==1){
 					if($exclude==0){
 						if($check_domain>0){
-							array_push($url_array,$url_get);
+							if($check_prefix_enable>0){
+								array_push($url_array,$url_get);
+							}
 						}
 					}
 				}
@@ -190,6 +195,21 @@ function find_url_like_prefix($url_prefix){
 	}
 	return $array;
 	
+}
+function check_prefix_enable($url_get){
+	$ada = 0;
+	foreach(list_media_prefix('1') as $list){
+		
+		$url_prefix = $list[0];
+		$url = UbahSimbol($url);
+		$pos = strrpos($url,$url_prefix);
+		
+		if($pos == true){
+			$ada += 1;
+		}
+		
+	}
+	return $ada	
 }
 
 
