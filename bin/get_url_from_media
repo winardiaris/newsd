@@ -3,4 +3,4 @@ FOLDER="/var/www/html/newsd/"
 BERKAS="get_url_from_media.php"
 
 cd $FOLDER
-php $BERKAS > $FOLDER"log/"$BERKAS".log" &
+php $BERKAS > $FOLDER"log/"$BERKAS".log" 2>&1
