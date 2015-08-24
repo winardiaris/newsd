@@ -4,10 +4,10 @@ FOLDER="/var/www/html/newsd/bin"
 
 function start {
 	cd $FOLDER
-	bash get_news_content
-	bash get_news_content_rss
-	bash get_url_from_media
-	bash get_url_from_rss
+	bash get_news_content &
+	bash get_news_content_rss &
+	bash get_url_from_media &
+	bash get_url_from_rss &
 }
 
 function stop {
