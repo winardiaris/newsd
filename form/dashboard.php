@@ -10,11 +10,11 @@ $m = ifset('m');
 $op = ifset('op');
 
 if($op=='start'){
-	shell_exec("/var/www/html/newsd/bin/newsd start 2>&1");
+	exec("newsd start ");
 	send_notif('Started');
 }
 elseif($op=='stop'){
-	shell_exec("/var/www/html/newsd/bin/newsd stop 2>&1");
+	exec("newsd stop ");
 	send_notif('Stoped');
 }
 

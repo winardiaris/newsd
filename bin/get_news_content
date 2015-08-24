@@ -1,6 +1,0 @@
-#!/bin/bash
-FOLDER="/var/www/html/newsd/"
-BERKAS="get_news_content.php"
-
-cd $FOLDER
-php $BERKAS > $FOLDER"log/"$BERKAS".log" 2>&1

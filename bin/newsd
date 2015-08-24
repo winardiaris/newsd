@@ -1,17 +1,90 @@
 #!/bin/bash
 KOMAN=$1
-FOLDER="/var/www/html/newsd/bin"
+FOLDER="/var/www/html/newsd/"
+
+function get_news_content {
+	
+	BERKAS="get_news_content.php"
+	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	
+	if [ "$HASIL" = "$BERKAS" ]; then
+	    
+	    echo "$BERKAS 		[running]"
+	    
+	else
+	    
+	    cd $FOLDER
+	    echo "$BERKAS 		[starting]"
+	    php $BERKAS > $FOLDER"log/get_news_content.log" 2>&1 & 
+	fi
+}
+
+function get_url_from_media {
+	
+	BERKAS="get_url_from_media.php"
+	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	
+	if [ "$HASIL" = "$BERKAS" ]; then
+	    
+	    echo "$BERKAS 		[running]"
+	    
+	else
+	    
+	    cd $FOLDER
+	    echo "$BERKAS 		[starting]"
+	    php $BERKAS > $FOLDER"log/get_url_from_media.log" 2>&1 &
+	fi
+}
+
+function get_news_content_rss {
+	
+	BERKAS="get_news_content_rss.php"
+	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	
+	if [ "$HASIL" = "$BERKAS" ]; then
+	    
+	    echo "$BERKAS 	[running]"
+	    
+	else
+	    
+	    cd $FOLDER
+	    echo "$BERKAS 	[starting]"
+	    php $BERKAS > $FOLDER"log/get_news_content_rss.log" 2>&1 &
+	fi
+}
+
+function get_url_from_rss {
+	
+	BERKAS="get_url_from_rss.php"
+	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	
+	if [ "$HASIL" = "$BERKAS" ]; then
+	    
+	    echo "$BERKAS 		[running]"
+	    
+	else
+	    
+	    cd $FOLDER
+	    echo "$BERKAS 		[starting]"
+	    php $BERKAS > $FOLDER"log/get_url_from_rss.log" 2>&1 &
+	fi
+}
 
 function start {
-	cd $FOLDER
-	bash get_news_content &
-	bash get_news_content_rss &
-	bash get_url_from_media &
-	bash get_url_from_rss &
+	get_url_from_media
+	get_url_from_rss
+	get_news_content
+	get_news_content_rss
 }
 
 function stop {
 	killall php
+	
+	echo "get_url_from_media.php 		[stopped]"
+	echo "get_url_from_rss.php 		[stopped]"
+	echo "get_news_content.php 		[stopped]"
+	echo "get_news_content_rss.php 	[stopped]"
+	
 }
 
 if [ $KOMAN = "start" ] || [ $KOMAN = "START" ]

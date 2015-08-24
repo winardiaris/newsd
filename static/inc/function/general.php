@@ -284,7 +284,8 @@ function send_notif($str){
 
 function check_internet($target){
 	$aa = get_headers($target, 1);
-	if($aa[0]=='HTTP/1.1 200 OK'){
+	$string = $aa[0];
+	if(strpos($string,"200")){
 		return 1;
 	}
 	else{
