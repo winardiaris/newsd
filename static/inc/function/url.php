@@ -201,8 +201,8 @@ function check_prefix_enable($url_get){
 	foreach(list_media_prefix('1') as $list){
 		
 		$url_prefix = $list[0];
-		$url = UbahSimbol($url);
-		$pos = strrpos($url,$url_prefix);
+		$url_get = UbahSimbol($url_get);
+		$pos = strrpos($url_get,$url_prefix);
 		
 		if($pos == true){
 			$ada += 1;
