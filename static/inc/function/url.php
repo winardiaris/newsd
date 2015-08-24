@@ -209,7 +209,7 @@ function check_prefix_enable($url_get){
 		}
 		
 	}
-	return $ada	
+	return $ada	;
 }
 
 
