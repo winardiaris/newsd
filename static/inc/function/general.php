@@ -130,7 +130,7 @@ function UbahXXX($str){
 						" ",
 						" ",
 						" ",
-						""
+						" "
 					);
 
 	$str = preg_replace($search,$replace,$str);
