@@ -38,7 +38,7 @@ while($data = mysql_fetch_array($content_data)){
 	$return .='<div itemprop="media">'.Balikin($data['media']).'</div>'.PHP_EOL;
 	$return .='<div itemprop="title">'.Balikin($data['title']).'</div>'.PHP_EOL;
 	$return .='<div itemprop="date">'.Balikin($data['date']).'</div>'.PHP_EOL;
-	$return .='<div itemprop="news_content">'.html_entity_decode(Balikin($data['news_content'])).'</div>'.PHP_EOL;
+	//$return .='<div itemprop="news_content">'.html_entity_decode(Balikin($data['news_content'])).'</div>'.PHP_EOL;
 	$return .='<div itemprop="writer">'.Balikin($data['writer']).'</div>'.PHP_EOL;
 	$return .='<div itemprop="image">'.Balikin($data['image']).'</div>'.PHP_EOL;
 	$return .='<div itemprop="url">'.Balikin($data['url']).'</div>'.PHP_EOL;

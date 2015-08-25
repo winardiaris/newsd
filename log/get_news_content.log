@@ -1,0 +1,5 @@
+PHP Warning:  get_headers(http://batampos.co.id/2013/11/20/inilah-lima-calon-ketua-pssi-kepri-2013-2017-anda-pilih-siapa/): failed to open stream: HTTP request failed!  in /var/www/html/newsd/static/inc/function/general.php on line 286
+PHP Warning:  get_headers(http://batampos.co.id/2013/11/22/bung-chris-tetap-optimis-meski-tak-diusulkan-batam/): failed to open stream: HTTP request failed!  in /var/www/html/newsd/static/inc/function/general.php on line 286
+PHP Warning:  get_headers(http://batampos.co.id/feature): failed to open stream: HTTP request failed!  in /var/www/html/newsd/static/inc/function/general.php on line 286
+PHP Warning:  get_headers(http://www.batampos.co.id/): failed to open stream: HTTP request failed!  in /var/www/html/newsd/static/inc/function/general.php on line 286
+PHP Warning:  get_headers(http://sport.detik.com/read/2015/08/04/081558/2982414/72/liverpool-kali-ini-dinilai-telah-berbelanja-dengan-lebih-bijak): failed to open stream: HTTP request failed!  in /var/www/html/newsd/static/inc/function/general.php on line 286
