@@ -110,7 +110,7 @@ function View(){
 	<form method="POST" action="?m='.ifset('m').'&l='.ifset('l').'&a='.ifset('a').'&kode='.$data['kode'].'">
 		<div class="col-lg-10">
 		   <h3>'.html_entity_decode(Balikin($data['title']), ENT_NOQUOTES, 'UTF-8').'</h3>
-		   <small>'.strtoupper(Balikin($data['media'])).' | '.Balikin($data['title']).' | '.Balikin($data['writer']).'</small>
+		   <small>'.strtoupper(Balikin($data['media'])).' | '.Balikin($data['date']).' | '.Balikin($data['writer']).'</small>
 			<small><a class="" target="_blank" href="'.Balikin($data['url']).'" title="Visit Link">Visit url</a></small>
 			
 			<div class="pull-right">
