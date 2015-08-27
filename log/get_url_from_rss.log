@@ -1,6 +1,0 @@
-PHP Warning:  simplexml_load_file(): http://www.beritasatu.com/rss/olahraga.xml:150: parser error : Entity 'acirc' not defined in /var/www/html/newsd/static/inc/function/rss.php on line 47
-PHP Warning:  simplexml_load_file():   <title>&acirc;KONI Kukar Bentuk Korwil</title> in /var/www/html/newsd/static/inc/function/rss.php on line 47
-PHP Warning:  simplexml_load_file():                 ^ in /var/www/html/newsd/static/inc/function/rss.php on line 47
-PHP Notice:  Trying to get property of non-object in /var/www/html/newsd/static/inc/function/rss.php on line 49
-PHP Notice:  Trying to get property of non-object in /var/www/html/newsd/static/inc/function/rss.php on line 49
-PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/newsd/static/inc/function/rss.php on line 49

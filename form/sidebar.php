@@ -9,7 +9,10 @@
 						 <a href="?m=media"><i class="fa fa-table fa-fw"></i> Medias</a>
 					</li>
 					<li>
-						 <a href="?m=media_prefix"><i class="fa fa-table fa-fw"></i> Media Prefix</a>
+						 <a href="?m=prefix"><i class="fa fa-table fa-fw"></i> Media Prefix</a>
+					</li>
+					<li>
+						 <a href="?m=priority"><i class="fa fa-table fa-fw"></i> Priority</a>
 					</li>
 					<li>
 						 <a href="?m=news_content"><i class="fa fa-table fa-fw"></i> News</a>

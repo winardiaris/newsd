@@ -3,6 +3,7 @@
 
 include ("function/general.php");
 include ("function/media.php");
+include ("function/priority.php");
 include ("function/url.php");
 include ("function/rss.php");
 include ("function/main.php");

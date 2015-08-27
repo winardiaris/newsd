@@ -87,12 +87,37 @@ function stop {
 	
 }
 
+function log1 {
+	cat $FOLDER"log/get_news_content.log"
+}
+function log2 {
+	cat $FOLDER"log/get_url_from_media.log"
+}
+function log3 {
+	cat $FOLDER"log/get_news_content_rss.log"
+}
+function log4 {
+	cat $FOLDER"log/get_url_from_rss.log"
+}
+
 if [ $KOMAN = "start" ] || [ $KOMAN = "START" ]
 then
 	start
 elif [ $KOMAN = "stop" ] || [ $KOMAN = "STOP" ]
 then
 	stop             
+elif [ $KOMAN = "log1" ] 
+then
+	log1             
+elif [ $KOMAN = "log2" ]
+then
+	log2             
+elif [ $KOMAN = "log3" ] 
+then
+	log3             
+elif [ $KOMAN = "log4" ]
+then
+	log4             
 else
 	echo " $KOMAN tidak ada"
 fi

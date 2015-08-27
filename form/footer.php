@@ -19,6 +19,9 @@ $(document).ready(function() {
      $('#rss-table').DataTable({
                 responsive: true
       });
+     $('#priority-table').DataTable({
+                responsive: true
+      });
       
       
 		$('#UbahXXX').change(function() {

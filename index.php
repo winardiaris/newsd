@@ -13,8 +13,11 @@ if(!empty($_GET['m'])){
 		case "media":
 			$view = "form/media.php";
 			break;
-		case "media_prefix":
-			$view = "form/media_prefix.php";
+		case "prefix":
+			$view = "form/prefix.php";
+			break;
+		case "priority":
+			$view = "form/priority.php";
 			break;
 		case "news_content":
 			$view = "form/news_content.php";
