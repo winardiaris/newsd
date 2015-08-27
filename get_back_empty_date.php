@@ -13,6 +13,15 @@ while($d=mysql_fetch_array($q)){
 	
 }
 
+$q = mysql_query("select * from `data` where `date`>'2015-08-28'") or die(mysql_error());
+while($d=mysql_fetch_array($q)){
+	$date = $d['date'];
+	$date = explode("-",$date);
+	$date = $date[0]."-".$date[2].$date[1];
+	
+	mysql_query("update `data` set `date`='$date' where `kode`='".$d['kode']."' ") or die(mysql_error());
+}
+
 
 
 ?>
