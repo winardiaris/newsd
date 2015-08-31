@@ -9,11 +9,12 @@ include ("static/inc/simple_html_dom.php");
 
 // = url_test($media_url,$url_target);
 foreach (priority_list() as $list){
+	$array_url = array();
 	$url = Balikin($list[1]); //url get
 	$media_name = get_media_from_url($url);
 	$media_url = Balikin(get_media_from_media_data($media_name,'media_url'));
 	
-		echo $url.PHP_EOL.PHP_EOL;
+		//echo $url.PHP_EOL.PHP_EOL;
 		$html = file_get_html($url);
 		foreach($html->find('a') as $data){
 			$url_get = $data->href;
@@ -22,10 +23,7 @@ foreach (priority_list() as $list){
 				$enable = check_prefix_enable($url_get);
 				
 				if($enable>0){
-					echo $url_get.PHP_EOL;
-					
-					
-					
+					array_push($url_get);
 				}
 			}
 			else{
@@ -33,13 +31,13 @@ foreach (priority_list() as $list){
 				$enable = check_prefix_enable($url_get);
 				
 				if($enable>0){
-					echo $url_get.PHP_EOL;
-					
-					
-					
+					array_push($url_get);
 				}
 			}
 		}
+		
+		$uniq = array_map('unserialize', array_unique(array_map('serialize', $array_url)));
+		print_r($uniq);
 	
 }
 
