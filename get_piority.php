@@ -8,9 +8,8 @@ include ("static/inc/simple_html_dom.php");
 
 
 // = url_test($media_url,$url_target);
-
-$array_url = array();
 foreach (priority_list("where `priority_status`='1' order by `priority_url` asc") as $list){
+	$array_url = array();
 	$url = Balikin($list[1]); //url get
 	
 	if(check_internet($url)==1){
@@ -42,11 +41,14 @@ foreach (priority_list("where `priority_status`='1' order by `priority_url` asc"
 			}
 		}
 		
+		$uniq = array_map('unserialize', array_unique(array_map('serialize', $array_url)));
+		print_r($uniq);
+		
+		foreach ($uniq as $url){
+			url_save($url,0,2);
+		}
 	}
-	
 }
-$uniq = array_map('unserialize', array_unique(array_map('serialize', $array_url)));
-print_r($uniq);
 
 
 ?>

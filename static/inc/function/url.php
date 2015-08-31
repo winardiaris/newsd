@@ -198,6 +198,15 @@ function find_url_like_prefix($url_prefix){
 	return $array;
 	
 }
+function find_url_from_db($where){
+	$array = array();
+	$qry = mysql_query("select * from `url_data`  $where");
+	while($data=mysql_fetch_array($qry)){
+		array_push($array,array($data['url_id'],$data['url'],$data['url_status'],$data['url_from']));
+	}
+	return $array;
+}
+
 function check_prefix_enable($url_get){
 	$ada = 0;
 	foreach(list_media_prefix('1') as $list){
