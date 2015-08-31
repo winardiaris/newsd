@@ -29,18 +29,18 @@ $where = substr($where,0,-5);
 
 //echo $where;
 
-
+if($from or $media){
 $media = UbahSimbol($media);
 	$q=mysql_query("select * from `url_data`  $where  order by `url` asc")or die(mysql_error());
 	$count = mysql_num_rows($q)+1;
 	
-	echo '<div style="height:400px;overflow: auto;" class="well well-sm">';
+	echo '<div style="height:380px;overflow: auto;" class="well well-sm">';
 	while($d=mysql_fetch_array($q)){
-		echo $NO1++.'.<a href="'.Balikin($d['url']).'" target="_blank">'.Balikin($d['url']).'</a><br>'.PHP_EOL;
+		echo $NO1++.'.<a href="'.Balikin($d['url']).'" target="_blank">'.Balikin($d['url']).'</a><div class="pull-right">'.$d['url_status'].'</div><br>'.PHP_EOL;
 	}
 	
 	echo '</div>';
 
-
+}
 
 ?>

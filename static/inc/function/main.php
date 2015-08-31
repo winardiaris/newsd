@@ -41,13 +41,21 @@ function update_status_url($url_id){
 }
 
 
-function get_content($url_from,$prefix_status=null,$show_get_content=null,$save_content=null){
+function get_content($url_from,$prefix_status,$show_get_content,$save_content){
 	if(isset($prefix_status)){
 		$prefix_list = list_media_prefix($prefix_status);
 	}
 	else{
 		$prefix_list = list_media_prefix('1');
 	}
+	
+	if(isset($url_from)){
+		$url_from_ = "and `url_from`='$url_from'";
+	}
+	else{
+		$url_from_ = "";
+	}
+	
 	
 	$count_prefix = count($prefix_list);
 	
@@ -66,7 +74,7 @@ function get_content($url_from,$prefix_status=null,$show_get_content=null,$save_
 		$media_prefix_id			= Balikin($prefix_list[$i][10]);
 		
 		
-		$find_url_from_db = find_url_from_db("WHERE `url` like '%$media_prefix_url%' and `url_status`='0' and `url_from`='$url_from' order by `url` ");
+		$find_url_from_db = find_url_from_db("WHERE `url` like '%$media_prefix_url%' and `url_status`='0' $url_from_ order by `url` ");
 		//$find_url_from_db = find_url_from_db($where_find_url);
 		foreach($find_url_from_db as $list_find ){
 			
@@ -142,7 +150,7 @@ function get_content($url_from,$prefix_status=null,$show_get_content=null,$save_
 					}
 				}
 			
-				if(isset($show_get_content)){
+				if($show_get_content>0){
 					echo "KODE:".$kode.PHP_EOL;
 					echo "URL:".Balikin($target).PHP_EOL;
 					echo "MEDIA:$media_".PHP_EOL;
@@ -155,7 +163,7 @@ function get_content($url_from,$prefix_status=null,$show_get_content=null,$save_
 				}
 				
 				
-				if(isset($save_content)){
+				if($save_content>0){
 					$title = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($title)));
 					$date = UbahBulan($date);
 					$image = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($image)));

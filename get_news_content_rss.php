@@ -13,13 +13,13 @@ include ("static/inc/simple_html_dom.php");
 //  1 = active
 //	2 = deleted
 //  #show_get_content
-// 	null=not show content on debug
+// 	0=not show content on debug
 // 	1=show content on debug
 //	#save_content
-//	null = not save
+//	0 = not save
 //	1 = allow save
 //	function get_content($url_from,$prefix_status=null,$show_get_content=null,$save_content=null)
 
-get_content(3,1);
+get_content(3,1,0,1);
 
 ?>
