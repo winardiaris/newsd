@@ -23,7 +23,7 @@ foreach (priority_list() as $list){
 				$enable = check_prefix_enable($url_get);
 				
 				if($enable>0){
-					array_push($url_get);
+					array_push($array_url,$url_get);
 				}
 			}
 			else{
@@ -31,7 +31,7 @@ foreach (priority_list() as $list){
 				$enable = check_prefix_enable($url_get);
 				
 				if($enable>0){
-					array_push($url_get);
+					array_push($array_url,$url_get);
 				}
 			}
 		}
