@@ -136,23 +136,25 @@ foreach (list_media_prefix('1') as $prefix_list){
 		}
 		
 
-		echo "KODE:".$kode.PHP_EOL;
-		echo "URL:".Balikin($target).PHP_EOL;
-		echo "MEDIA:$media_".PHP_EOL;
-		echo "TITLE:$title".PHP_EOL;
-		echo "DATE:".$date.PHP_EOL;
-		echo "NEWS CONTENT:$news_content".PHP_EOL;
-		echo "WRITER:$writer".PHP_EOL;
-		echo "IMAGE:$image".PHP_EOL;
-		echo "--------------------------------------------------------------------------------------------------------".PHP_EOL;
+		//echo "KODE:".$kode.PHP_EOL;
+		//echo "URL:".Balikin($target).PHP_EOL;
+		//echo "MEDIA:$media_".PHP_EOL;
+		//echo "TITLE:$title".PHP_EOL;
+		//echo "DATE:".$date.PHP_EOL;
+		//echo "NEWS CONTENT:$news_content".PHP_EOL;
+		//echo "WRITER:$writer".PHP_EOL;
+		//echo "IMAGE:$image".PHP_EOL;
+		//echo "--------------------------------------------------------------------------------------------------------".PHP_EOL;
 		
-		$title = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($title)));
-		$date = UbahBulan($date);
-		$image = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($image)));
-		$news_content = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($news_content)));
-		$writer = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($writer)));
-		$target = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($target)));
-			
+		$title 			= UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($title)));
+		$date 			= UbahBulan($date);
+		$image 			= UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($image)));
+		$news_content 	= UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($news_content)));
+		$writer 		= UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($writer)));
+		$target 		= UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($target)));
+		
+		
+		save_content($kode,$media_,$title,$date,$image,$news_content,$writer,$target);
 	}
 	
 	//print_r($find_url_from_db);
