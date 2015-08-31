@@ -17,11 +17,27 @@ foreach (priority_list() as $list){
 		$html = file_get_html($url);
 		foreach($html->find('a') as $data){
 			$url_get = $data->href;
-			$enable = check_prefix_enable($url_get);
 			
-			
-			if($enable>0){
-				echo $url_get.PHP_EOL;
+			if(valid_url($url_get)==1){
+				$enable = check_prefix_enable($url_get);
+				
+				if($enable>0){
+					echo $url_get.PHP_EOL;
+					
+					
+					
+				}
+			}
+			else{
+				$url_get = real_url($media_url.$url_get);
+				$enable = check_prefix_enable($url_get);
+				
+				if($enable>0){
+					echo $url_get.PHP_EOL;
+					
+					
+					
+				}
 			}
 		}
 	
