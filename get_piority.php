@@ -67,7 +67,7 @@ foreach (list_media_prefix('1') as $prefix_list){
 	$find_url_from_db = find_url_from_db("WHERE `url` like '%$media_prefix_url%' and `url_status`='0' and `url_from`='2' order by `url` ");
 	foreach($find_url_from_db as $urls ){
 		$kode = $urls[0];
-		$target = $urls[1];
+		$target = Balikin($urls[1]);
 		
 		
 		$html = file_get_html($target);
