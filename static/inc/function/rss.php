@@ -31,10 +31,10 @@ function rss_save($rss_url,$rss_media){
 	
 	
 }
-function rss_list($order=null){
+function rss_list($where=null){
 	
 	$rss_list_array = array();
-	$rss_list_query = mysql_query("select * from `rss_data` $order ")or die(mysql_error());
+	$rss_list_query = mysql_query("select * from `rss_data` $where ")or die(mysql_error());
 	
 	while($data = mysql_fetch_array($rss_list_query)){
 		array_push($rss_list_array,array($data['rss_id'],$data['rss_media'],Balikin($data['rss_url'])));

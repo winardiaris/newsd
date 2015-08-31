@@ -159,7 +159,8 @@ function list_media_prefix($status){
 				$data['media_prefix_writer'],
 				$data['media_prefix_image'],
 				$data['media_prefix_status'],
-				$data['media_']
+				$data['media_'],
+				$data['media_prefix_id']
 			)
 		);
 	}
