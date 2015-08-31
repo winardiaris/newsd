@@ -18,6 +18,7 @@ foreach (priority_list("where `priority_status`='1' order by `priority_url` asc"
 		$html = file_get_html($url);
 		foreach($html->find('a') as $data){
 			$url_get = $data->href;
+			$url_get = real_url($url_get);
 			
 			if(valid_url($url_get)==1){
 				$enable = check_prefix_enable($url_get);
