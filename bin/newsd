@@ -2,40 +2,54 @@
 KOMAN=$1
 FOLDER="/var/www/html/newsd/"
 
-function get_news_content {
+function get_news_content_media {
 	
-	BERKAS="get_news_content.php"
+	BERKAS="get_news_content_media.php"
 	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
 	
 	if [ "$HASIL" = "$BERKAS" ]; then
 	    
-	    echo "$BERKAS 		[running]"
+	    echo "$BERKAS 	[running]"
 	    
 	else
 	    
 	    cd $FOLDER
-	    echo "$BERKAS 		[starting]"
-	    php $BERKAS > $FOLDER"log/get_news_content.log" 2>&1 & 
+	    echo "$BERKAS 	[starting]"
+	    php $BERKAS > $FOLDER"log/get_news_content_media.log" 2>&1 & 
 	fi
 }
-
-function get_url_from_media {
+function get_news_content_priority {
 	
-	BERKAS="get_url_from_media.php"
+	BERKAS="get_news_content_priority.php"
 	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
 	
 	if [ "$HASIL" = "$BERKAS" ]; then
 	    
-	    echo "$BERKAS 		[running]"
+	    echo "$BERKAS 	[running]"
 	    
 	else
 	    
 	    cd $FOLDER
-	    echo "$BERKAS 		[starting]"
-	    php $BERKAS > $FOLDER"log/get_url_from_media.log" 2>&1 &
+	    echo "$BERKAS 	[starting]"
+	    php $BERKAS > $FOLDER"log/get_news_content_priority.log" 2>&1 &
 	fi
 }
-
+function get_news_content_random {
+	
+	BERKAS="get_news_content_random.php"
+	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	
+	if [ "$HASIL" = "$BERKAS" ]; then
+	    
+	    echo "$BERKAS 	[running]"
+	    
+	else
+	    
+	    cd $FOLDER
+	    echo "$BERKAS 	[starting]"
+	    php $BERKAS > $FOLDER"log/get_news_content_random.log" 2>&1 &
+	fi
+}
 function get_news_content_rss {
 	
 	BERKAS="get_news_content_rss.php"
@@ -53,6 +67,57 @@ function get_news_content_rss {
 	fi
 }
 
+
+
+
+function get_url_from_media {
+	
+	BERKAS="get_url_from_media.php"
+	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	
+	if [ "$HASIL" = "$BERKAS" ]; then
+	    
+	    echo "$BERKAS 		[running]"
+	    
+	else
+	    
+	    cd $FOLDER
+	    echo "$BERKAS 		[starting]"
+	    php $BERKAS > $FOLDER"log/get_url_from_media.log" 2>&1 &
+	fi
+}
+function get_url_from_priority {
+	
+	BERKAS="get_url_from_priority.php"
+	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	
+	if [ "$HASIL" = "$BERKAS" ]; then
+	    
+	    echo "$BERKAS 	[running]"
+	    
+	else
+	    
+	    cd $FOLDER
+	    echo "$BERKAS 	[starting]"
+	    php $BERKAS > $FOLDER"log/get_url_from_priority.log" 2>&1 &
+	fi
+}
+function get_url_from_random {
+	
+	BERKAS="get_url_from_random.php"
+	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	
+	if [ "$HASIL" = "$BERKAS" ]; then
+	    
+	    echo "$BERKAS 	[running]"
+	    
+	else
+	    
+	    cd $FOLDER
+	    echo "$BERKAS 	[starting]"
+	    php $BERKAS > $FOLDER"log/get_url_from_random.log" 2>&1 &
+	fi
+}
 function get_url_from_rss {
 	
 	BERKAS="get_url_from_rss.php"
@@ -70,10 +135,18 @@ function get_url_from_rss {
 	fi
 }
 
+
+
+
 function start {
 	get_url_from_media
+	get_url_from_priority
+	get_url_from_random
 	get_url_from_rss
-	get_news_content
+	
+	get_news_content_media
+	get_news_content_priority
+	get_news_content_random
 	get_news_content_rss
 }
 
@@ -81,8 +154,13 @@ function stop {
 	killall php
 	
 	echo "get_url_from_media.php 		[stopped]"
+	echo "get_url_from_priority.php 	[stopped]"
+	echo "get_url_from_random.php 	[stopped]"
 	echo "get_url_from_rss.php 		[stopped]"
-	echo "get_news_content.php 		[stopped]"
+	
+	echo "get_news_content_media.php 	[stopped]"
+	echo "get_news_content_priority.php 	[stopped]"
+	echo "get_news_content_random.php 	[stopped]"
 	echo "get_news_content_rss.php 	[stopped]"
 	
 }
