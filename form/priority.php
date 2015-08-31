@@ -43,7 +43,7 @@ elseif(isset($_GET['op'])){
 	echo '<tr>
 		<td><a href="?m='.ifset('m').'&op=delete&id='.$list[0].'" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
 		<td width="50px;" align="right">'.$NO1++.'</td>
-		<td>'.Balikin($list[1]).'</td>
+		<td><a href="'.Balikin($list[1]).'" target="_blank">'.Balikin($list[1]).'</a></td>
 		
 	</tr>';
 		}
