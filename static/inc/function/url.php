@@ -162,6 +162,7 @@ function check_domain_from_db_media($url){
 }
 
 
+
 function url_save($url,$status=null){
 	$count		= 0;
 	$url_id		= md5($url);
