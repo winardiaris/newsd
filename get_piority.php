@@ -14,7 +14,7 @@ foreach (priority_list() as $list){
 	$media_name = get_media_from_url($url);
 	$media_url = Balikin(get_media_from_media_data($media_name,'media_url'));
 	
-		//echo $url.PHP_EOL.PHP_EOL;
+		echo $url.PHP_EOL.PHP_EOL;
 		$html = file_get_html($url);
 		foreach($html->find('a') as $data){
 			$url_get = $data->href;
