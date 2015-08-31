@@ -66,10 +66,12 @@ foreach (list_media_prefix('1') as $prefix_list){
 	
 	$find_url_from_db = find_url_from_db("WHERE `url` like '%$media_prefix_url%' and `url_status`='0' and `url_from`='2' order by `url` ");
 	foreach($find_url_from_db as $urls ){
+		$url_kode = $urls[0];
 		
+		echo $url_kode.PHP_EOL; 
 	}
 	
-	print_r($find_url_from_db);
+	//print_r($find_url_from_db);
 	
 }
 //print_r(list_media_prefix('1'));
