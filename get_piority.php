@@ -66,9 +66,86 @@ foreach (list_media_prefix('1') as $prefix_list){
 	
 	$find_url_from_db = find_url_from_db("WHERE `url` like '%$media_prefix_url%' and `url_status`='0' and `url_from`='2' order by `url` ");
 	foreach($find_url_from_db as $urls ){
-		$url_kode = $urls[0];
+		$kode = $urls[0];
+		$target = $urls[1];
 		
-		echo $url_kode.PHP_EOL; 
+		
+		$html = file_get_html($target);
+		
+		if($media_prefix_container!="-"){
+				
+			foreach($html->find($media_prefix_container) as $container ){
+				
+				//--TITLE
+				if($media_prefix_title!="-"){
+					foreach($container->find($media_prefix_title) as $a){
+						$title = $a->plaintext;
+					}
+				}else{
+						$title = "-";
+				}
+				
+				
+				//--DATE
+				if($media_prefix_date!="-"){
+					foreach($container->find($media_prefix_date) as $b){
+						$date_ = $b->plaintext;
+						$date_ = UbahXXX(UbahXXX(UbahBulan($date_)));
+						$date_ = explode(" ",$date_);
+						$date_split = explode("|",$media_prefix_date_split);
+						
+						$date=$date_[$date_split[0]]."-".$date_[$date_split[1]]."-".$date_[$date_split[2]];
+					}
+				}else{
+						$date="" ;
+				}
+				
+				
+				//--NEWS CONTENT
+				if($media_prefix_news_content!="-"){
+					foreach($container->find($media_prefix_news_content) as $c){
+						$news_content = $c->plaintext;
+					}
+				}else{
+						$news_content="-";
+				}
+				
+				
+				
+				//-- WRITER 
+				if($media_prefix_writer!="-"){
+					foreach($container->find($media_prefix_writer) as $d){
+						$writer = $d->plaintext;
+					}
+				}else{
+						$writer="-";
+				}
+				
+				
+				
+				//-- IMAGE
+				if($media_prefix_image!="-"){
+					foreach($container->find($media_prefix_image) as $e){
+						$image = $e->src;
+					}
+				}else{
+						$image='-';
+				}
+				
+			}
+		}
+		
+		echo "KODE:".$kode.PHP_EOL;
+		echo "URL:".Balikin($target).PHP_EOL;
+		echo "MEDIA:$media_".PHP_EOL;
+		echo "TITLE:$title".PHP_EOL;
+		echo "DATE:".$date.PHP_EOL;
+		echo "NEWS CONTENT:$news_content".PHP_EOL;
+		echo "WRITER:$writer".PHP_EOL;
+		echo "IMAGE:$image".PHP_EOL;
+		echo "--------------------------------------------------------------------------------------------------------".PHP_EOL;
+		
+			
 	}
 	
 	//print_r($find_url_from_db);
