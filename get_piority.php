@@ -8,7 +8,7 @@ include ("static/inc/simple_html_dom.php");
 
 
 // = url_test($media_url,$url_target);
-foreach (priority_list() as $list){
+foreach (priority_list("where `priority_status`='1' order by `priority_url` asc") as $list){
 	$array_url = array();
 	$url = Balikin($list[1]); //url get
 	$media_name = get_media_from_url($url);

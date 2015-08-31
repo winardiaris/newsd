@@ -4,6 +4,15 @@ if(isset($_POST['priority_save'])){
 	priority_save($priority_url);
 	
 }
+elseif(isset($_GET['op'])){
+	$op = ifset('op');
+	
+	if($op=='delete'){
+		$id=ifset('id');
+		
+		priority_delete($id);
+	}
+}
 
 
 ?>
@@ -29,10 +38,10 @@ if(isset($_POST['priority_save'])){
 	</thead>
 	<tbody>
 		<?php
-		foreach(priority_list() as $list){
+		foreach(priority_list("where `priority_status`='1' order by `priority_url` asc") as $list){
 		
 	echo '<tr>
-		<td></td>
+		<td><a href="?m='.ifset('m').'&op=delete&id='.$list[0].'" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
 		<td width="50px;" align="right">'.$NO1++.'</td>
 		<td>'.Balikin($list[1]).'</td>
 		

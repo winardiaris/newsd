@@ -29,7 +29,7 @@ function priority_list($where=null){
 	return $priority_list_array;
 }
 function priority_delete($priority_id){
-	$q = mysql_query("update `priority` set `priority_status`='2'")or die(mysql_error());
+	$q = mysql_query("update `priority` set `priority_status`='2' where `priority_id`='$priority_id'")or die(mysql_error());
 	if($q){
 		send_notif("priority deleted");
 	}
