@@ -135,6 +135,14 @@ foreach (list_media_prefix('1') as $prefix_list){
 			}
 		}
 		
+		$title = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($title)));
+		$date = UbahBulan($date);
+		$image = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($image)));
+		$news_content = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($news_content)));
+		$writer = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($writer)));
+		$target = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($target)));
+		
+		
 		echo "KODE:".$kode.PHP_EOL;
 		echo "URL:".Balikin($target).PHP_EOL;
 		echo "MEDIA:$media_".PHP_EOL;
