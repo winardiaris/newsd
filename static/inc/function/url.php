@@ -163,27 +163,28 @@ function check_domain_from_db_media($url){
 
 
 
-function url_save($url,$status=null){
+function url_save($url,$status=null,$from=null){
 	$count		= 0;
 	$url_id		= md5($url);
 	$url		= UbahSimbol($url);
 	$url_status	= 0; //0= belum terdapat data berita
-	if(!isset($status)){
-		$url_query = mysql_query("insert into `url_data` values('$url_id','$url','$url_status')")or die(mysql_error());
-	}
-	else{
-		$url_query = mysql_query("insert into `url_data` values('$url_id','$url','$status')")or die(mysql_error());
+	
+	if(check_domain_from_db_media($url)==0){
+		if(!isset($status)){
+			$url_query = mysql_query("insert into `url_data` values('$url_id','$url','$url_status','$from')")or die(mysql_error());
+		}
+		else{
+			$url_query = mysql_query("insert into `url_data` values('$url_id','$url','$status','$from')")or die(mysql_error());
+		}
+		
+		if($url_query){
+			$count +=1;
+		}
+		else{
+			$count +0;
+		}
 	}
 	
-	
-	
-	
-	if($url_query){
-		$count +=1;
-	}
-	else{
-		$count +0;
-	}
 
 	return $count;
 }

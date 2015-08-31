@@ -10,7 +10,7 @@ foreach(media_list("order by `media_name` asc") as $media_list){
 	$media_name = $media_list[1];
 	$media_url = $media_list[2];
 	
-	url_get($media_url,$media_url);
+	url_get($media_url,$media_url,1);
 
 }
 
