@@ -200,7 +200,7 @@ function find_url_like_prefix($url_prefix){
 }
 function find_url_from_db($where){
 	$array = array();
-	$qry = mysql_query("select * from `url_data`  $where");
+	$qry = mysql_query("select * from `url_data` $where ")or die(mysql_error());
 	while($data=mysql_fetch_array($qry)){
 		array_push($array,array($data['url_id'],$data['url'],$data['url_status'],$data['url_from']));
 	}
