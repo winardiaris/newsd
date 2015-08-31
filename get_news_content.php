@@ -104,9 +104,16 @@ for($i=0;$i<$count_prefix;$i++){
 		//echo "WRITER:$writer".PHP_EOL;
 		//echo "IMAGE:$image".PHP_EOL;
 		//echo "--------------------------------------------------------------------------------------------------------".PHP_EOL;
+		
+		$title = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($title)));
+		$date = UbahBulan($date);
+		$image = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($image)));
+		$news_content = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($news_content)));
+		$writer = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($writer)));
+		$target = UbahSimbol(htmlspecialchars_decode(htmlspecialchars_decode($target)));
+		
 	
-	
-		save_content($kode,$media_,UbahSimbol($title),UbahBulan($date),UbahSimbol($image),UbahSimbol($news_content),UbahSimbol($writer),UbahSimbol($target));
+		save_content($kode,$media_,$title,$date,$image,$news_content,$writer,$target);
 		}
 	}
 }
