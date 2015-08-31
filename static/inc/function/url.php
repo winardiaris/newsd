@@ -169,7 +169,7 @@ function url_save($url,$status=null,$from=null){
 	$url		= UbahSimbol($url);
 	$url_status	= 0; //0= belum terdapat data berita
 	
-	if(check_domain_from_db_media($url)==0){
+	if(check_url_from_db($url_id)==0){
 		if(!isset($status)){
 			$url_query = mysql_query("insert into `url_data` values('$url_id','$url','$url_status','$from')")or die(mysql_error());
 		}
