@@ -1,0 +1,4 @@
+PHP Notice:  Undefined variable: image in /var/www/html/newsd/static/inc/function/main.php on line 169
+PHP Warning:  file_get_contents(http://sultengpost.com/?p=10058): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /var/www/html/newsd/static/inc/simple_html_dom.php on line 76
+PHP Fatal error:  Call to a member function find() on a non-object in /var/www/html/newsd/static/inc/function/main.php on line 92
