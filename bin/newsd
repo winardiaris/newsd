@@ -2,8 +2,11 @@
 KOMAN=$1
 FOLDER="/var/www/html/newsd/"
 LOG="/var/log/newsd/"
-mkdir -p $LOG
-chmod -R 766 $LOG
+
+if [ ! -d $LOG ]; then
+	mkdir -p $LOG
+	chmod -R 766 $LOG
+fi
 
 function get_news_content_media {
 	
