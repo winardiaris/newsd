@@ -1,6 +1,9 @@
 #!/bin/bash
 KOMAN=$1
 FOLDER="/var/www/html/newsd/"
+LOG="/var/log/newsd/"
+mkdir -p $LOG
+chmod -R 766 $LOG
 
 function get_news_content_media {
 	
@@ -15,7 +18,7 @@ function get_news_content_media {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS >> $FOLDER"log/get_news_content_media.log" 2>&1 & 
+	    php $BERKAS >> $LOG"get_news_content_media.log" 2>&1 & 
 	fi
 }
 function get_news_content_priority {
@@ -31,7 +34,7 @@ function get_news_content_priority {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS >> $FOLDER"log/get_news_content_priority.log" 2>&1 &
+	    php $BERKAS >> $LOG"get_news_content_priority.log" 2>&1 &
 	fi
 }
 function get_news_content_random {
@@ -47,7 +50,7 @@ function get_news_content_random {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS >> $FOLDER"log/get_news_content_random.log" 2>&1 &
+	    php $BERKAS >> $LOG"get_news_content_random.log" 2>&1 &
 	fi
 }
 function get_news_content_rss {
@@ -63,7 +66,7 @@ function get_news_content_rss {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS >> $FOLDER"log/get_news_content_rss.log" 2>&1 &
+	    php $BERKAS >> $LOG"get_news_content_rss.log" 2>&1 &
 	fi
 }
 
@@ -81,7 +84,7 @@ function get_url_from_media {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 		[starting]"
-	    php $BERKAS >> $FOLDER"log/get_url_from_media.log" 2>&1 &
+	    php $BERKAS >> $LOG"get_url_from_media.log" 2>&1 &
 	fi
 }
 function get_url_from_priority {
@@ -97,7 +100,7 @@ function get_url_from_priority {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS >> $FOLDER"log/get_url_from_priority.log" 2>&1 &
+	    php $BERKAS >> $LOG"get_url_from_priority.log" 2>&1 &
 	fi
 }
 function get_url_from_random {
@@ -113,7 +116,7 @@ function get_url_from_random {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS >> $FOLDER"log/get_url_from_random.log" 2>&1 &
+	    php $BERKAS >> $LOG"get_url_from_random.log" 2>&1 &
 	fi
 }
 function get_url_from_rss {
@@ -129,7 +132,7 @@ function get_url_from_rss {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 		[starting]"
-	    php $BERKAS >> $FOLDER"log/get_url_from_rss.log" 2>&1 &
+	    php $BERKAS >> $LOG"get_url_from_rss.log" 2>&1 &
 	fi
 }
 
@@ -212,16 +215,16 @@ function stop {
 }
 
 function log1 {
-	cat $FOLDER"log/get_news_content.log"
+	cat $LOG"get_news_content.log"
 }
 function log2 {
-	cat $FOLDER"log/get_url_from_media.log"
+	cat $LOG"get_url_from_media.log"
 }
 function log3 {
-	cat $FOLDER"log/get_news_content_rss.log"
+	cat $LOG"get_news_content_rss.log"
 }
 function log4 {
-	cat $FOLDER"log/get_url_from_rss.log"
+	cat $LOG"get_url_from_rss.log"
 }
 
 if [ $KOMAN = "start" ] || [ $KOMAN = "START" ]
