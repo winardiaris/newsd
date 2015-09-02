@@ -5,7 +5,7 @@ LOG="/var/log/newsd/"
 
 if [ ! -d $LOG ]; then
 	mkdir -p $LOG
-	chmod -R 766 $LOG
+	chmod -R 666 $LOG
 fi
 
 function get_news_content_media {
