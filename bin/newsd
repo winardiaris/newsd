@@ -5,7 +5,7 @@ FOLDER="/var/www/html/newsd/"
 function get_news_content_media {
 	
 	BERKAS="get_news_content_media.php"
-	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	HASIL=`ps aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
 	
 	if [ "$HASIL" = "$BERKAS" ]; then
 	    
@@ -21,7 +21,7 @@ function get_news_content_media {
 function get_news_content_priority {
 	
 	BERKAS="get_news_content_priority.php"
-	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	HASIL=`ps aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
 	
 	if [ "$HASIL" = "$BERKAS" ]; then
 	    
@@ -37,7 +37,7 @@ function get_news_content_priority {
 function get_news_content_random {
 	
 	BERKAS="get_news_content_random.php"
-	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	HASIL=`ps aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
 	
 	if [ "$HASIL" = "$BERKAS" ]; then
 	    
@@ -53,7 +53,7 @@ function get_news_content_random {
 function get_news_content_rss {
 	
 	BERKAS="get_news_content_rss.php"
-	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	HASIL=`ps aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
 	
 	if [ "$HASIL" = "$BERKAS" ]; then
 	    
@@ -73,7 +73,7 @@ function get_news_content_rss {
 function get_url_from_media {
 	
 	BERKAS="get_url_from_media.php"
-	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	HASIL=`ps aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
 	
 	if [ "$HASIL" = "$BERKAS" ]; then
 	    
@@ -89,7 +89,7 @@ function get_url_from_media {
 function get_url_from_priority {
 	
 	BERKAS="get_url_from_priority.php"
-	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	HASIL=`ps aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
 	
 	if [ "$HASIL" = "$BERKAS" ]; then
 	    
@@ -105,7 +105,7 @@ function get_url_from_priority {
 function get_url_from_random {
 	
 	BERKAS="get_url_from_random.php"
-	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	HASIL=`ps aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
 	
 	if [ "$HASIL" = "$BERKAS" ]; then
 	    
@@ -121,7 +121,7 @@ function get_url_from_random {
 function get_url_from_rss {
 	
 	BERKAS="get_url_from_rss.php"
-	HASIL=`ps -aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
+	HASIL=`ps aux | sed -n /${BERKAS}/p | grep -v sed | awk '{print $12}'` 
 	
 	if [ "$HASIL" = "$BERKAS" ]; then
 	    
@@ -151,18 +151,66 @@ function start {
 }
 
 function stop {
-	killall php
+	a="get_url_from_media"
+	b="get_url_from_priority"
+	c="get_url_from_random"
+	d="get_url_from_rss"
+	e="get_news_content_media"
+	f="get_news_content_priority"
+	g="get_news_content_random"
+	h="get_news_content_rss"
 	
-	echo "get_url_from_media.php 		[stopped]"
-	echo "get_url_from_priority.php 	[stopped]"
-	echo "get_url_from_random.php 	[stopped]"
-	echo "get_url_from_rss.php 		[stopped]"
 	
-	echo "get_news_content_media.php 	[stopped]"
-	echo "get_news_content_priority.php 	[stopped]"
-	echo "get_news_content_random.php 	[stopped]"
-	echo "get_news_content_rss.php 	[stopped]"
+	pa="`ps aux | grep -v grep | grep "$a" | awk '{print $2}'`"
+	pb="`ps aux | grep -v grep | grep "$b" | awk '{print $2}'`"
+	pc="`ps aux | grep -v grep | grep "$c" | awk '{print $2}'`"
+	pd="`ps aux | grep -v grep | grep "$d" | awk '{print $2}'`"
+	pe="`ps aux | grep -v grep | grep "$e" | awk '{print $2}'`"
+	pf="`ps aux | grep -v grep | grep "$f" | awk '{print $2}'`"
+	pg="`ps aux | grep -v grep | grep "$g" | awk '{print $2}'`"
+	ph="`ps aux | grep -v grep | grep "$h" | awk '{print $2}'`"
 	
+	
+	
+	if [ $pa > 0 ]; then
+		kill $pa	
+		echo "$a.php 		[stoping]"
+	fi	
+	
+	if [ $pb > 0 ]; then
+		kill $pb	
+		echo "$b.php 	[stoping]"
+	fi
+	
+	if [ $pc > 0 ]; then
+		kill $pc	
+		echo "$c.php 	[stoping]"
+	fi
+	
+	if [ $pd > 0 ]; then
+		kill $pd	
+		echo "$d.php 		[stoping]"
+	fi
+	
+	if [ $pe > 0 ]; then
+		kill $pe	
+		echo "$e.php 	[stoping]"
+	fi
+	
+	if [ $pf > 0 ]; then
+		kill $pf	
+		echo "$f.php 	[stoping]"
+	fi
+	
+	if [ $pg > 0 ]; then
+		kill $pg	
+		echo "$g.php 	[stoping]"
+	fi	
+		
+	if [ $ph > 0 ]; then
+		kill $ph	
+		echo "$h.php 	[stoping]"
+	fi
 }
 
 function log1 {
