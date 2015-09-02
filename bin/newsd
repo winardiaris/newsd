@@ -15,7 +15,7 @@ function get_news_content_media {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS > $FOLDER"log/get_news_content_media.log" 2>&1 & 
+	    php $BERKAS >> $FOLDER"log/get_news_content_media.log" 2>&1 & 
 	fi
 }
 function get_news_content_priority {
@@ -31,7 +31,7 @@ function get_news_content_priority {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS > $FOLDER"log/get_news_content_priority.log" 2>&1 &
+	    php $BERKAS >> $FOLDER"log/get_news_content_priority.log" 2>&1 &
 	fi
 }
 function get_news_content_random {
@@ -47,7 +47,7 @@ function get_news_content_random {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS > $FOLDER"log/get_news_content_random.log" 2>&1 &
+	    php $BERKAS >> $FOLDER"log/get_news_content_random.log" 2>&1 &
 	fi
 }
 function get_news_content_rss {
@@ -63,11 +63,9 @@ function get_news_content_rss {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS > $FOLDER"log/get_news_content_rss.log" 2>&1 &
+	    php $BERKAS >> $FOLDER"log/get_news_content_rss.log" 2>&1 &
 	fi
 }
-
-
 
 
 function get_url_from_media {
@@ -83,7 +81,7 @@ function get_url_from_media {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 		[starting]"
-	    php $BERKAS > $FOLDER"log/get_url_from_media.log" 2>&1 &
+	    php $BERKAS >> $FOLDER"log/get_url_from_media.log" 2>&1 &
 	fi
 }
 function get_url_from_priority {
@@ -99,7 +97,7 @@ function get_url_from_priority {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS > $FOLDER"log/get_url_from_priority.log" 2>&1 &
+	    php $BERKAS >> $FOLDER"log/get_url_from_priority.log" 2>&1 &
 	fi
 }
 function get_url_from_random {
@@ -115,7 +113,7 @@ function get_url_from_random {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 	[starting]"
-	    php $BERKAS > $FOLDER"log/get_url_from_random.log" 2>&1 &
+	    php $BERKAS >> $FOLDER"log/get_url_from_random.log" 2>&1 &
 	fi
 }
 function get_url_from_rss {
@@ -131,7 +129,7 @@ function get_url_from_rss {
 	    
 	    cd $FOLDER
 	    echo "$BERKAS 		[starting]"
-	    php $BERKAS > $FOLDER"log/get_url_from_rss.log" 2>&1 &
+	    php $BERKAS >> $FOLDER"log/get_url_from_rss.log" 2>&1 &
 	fi
 }
 
