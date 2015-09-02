@@ -1,67 +1,59 @@
-<?php
-	include("static/inc/function.php");
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>The Hello World of News Search</title>
+    <script src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      
+      // This code generates a "Raw Searcher" to handle search queries. The Raw 
+      // Searcher requires you to handle and draw the search results manually.
+      google.load('search', '1');
 
+      var newsSearch;
 
-	$url_="batam.tribunnews.com/";
-	$media = UbahSimbol("batam.tribunnews");
-	$container = UbahSimbol("div#article");
-	$title = UbahSimbol("h1");
-	$date = UbahSimbol("div.grey h3");
-	$date_split =UbahSimbol("3|2|1");
-	$news_content = UbahSimbol("div.txt-article");
-	$writer = UbahSimbol("div[class=f11 grey]");
-	$image = UbahSimbol("div.imgfull_div img");
+      function searchComplete() {
 
-	$a="";
-	$sql = "INSERT INTO `newsd`.`media_prefix` (`media_prefix_id`, `media_`, `media_prefix_url`, `media_prefix_container`, `media_prefix_title`, `media_prefix_date`, `media_prefix_date_split`, `media_prefix_news_content`, `media_prefix_writer`, `media_prefix_image`, `media_prefix_status`) VALUES ".PHP_EOL;
-	for($thn=2008;$thn<=2016;$thn++){
-		$x="";
-		for($bln=1;$bln<=12;$bln++){
-			if($bln<10){
-				$bln = "0".$bln;
-			}
-			$url = $url_.$thn."/".$bln."/";
-			$id = md5($url) ;
-	
-				$x .= "('".$id."','".$media."','".UbahSimbol($url)."','".$container."','".$title."','".$date."','".$date_split."','".$news_content."','".$writer."','".$image."','1'),".PHP_EOL;
-				
-		}
-		$a .=$x;
-	}
-	
-	
-	$sql .=$a;
-	$sql = substr($sql,0,-2);
-	
-	echo $sql;
-	
-	//$url_="batam.tribunnews.com/";
-	//$media = UbahSimbol("batam.tribunnews");
-	//$container = UbahSimbol("div#article");
-	//$title = UbahSimbol("h1");
-	//$date = UbahSimbol("h3");
-	//$date_split =UbahSimbol("3|2|1");
-	//$news_content = UbahSimbol("div.txt-article");
-	//$writer = UbahSimbol("div[class=f11 grey]");
-	//$image = UbahSimbol("div.imgfull_div img");
+        // Check that we got results
+        document.getElementById('content').innerHTML = '';
+        if (newsSearch.results && newsSearch.results.length > 0) {
+          for (var i = 0; i < newsSearch.results.length; i++) {
 
-	//$a="";
-	//$sql = "delete from  `newsd`.`media_prefix` where  ";
-	//for($thn=2008;$thn<=2016;$thn++){
-		//$x="";
-		//for($bln=1;$bln<=12;$bln++){
-			//$url = $url_.$thn."/".$bln."/";
-			//$id = md5($url) ;
-	
-				//$x .= "`media_prefix_id`='".$id."' or "   ;
-				
-		//}
-		//$a .=$x;
-	//}
-	
-	
-	//$sql .=$a;
-	//$sql = substr($sql,0,-4);
-	
-	//echo $sql;
-?>
+            // Create HTML elements for search results
+            var p = document.createElement('p');
+            var a = document.createElement('a');
+            a.href="/news-search/v1/newsSearch.results[i].url;"
+            a.innerHTML = newsSearch.results[i].title;
+
+            // Append search results to the HTML nodes
+            p.appendChild(a);
+            document.body.appendChild(p);
+          }
+        }
+      }
+
+      function onLoad() {
+
+        // Create a News Search instance.
+        newsSearch = new google.search.NewsSearch();
+  
+        // Set searchComplete as the callback function when a search is 
+        // complete.  The newsSearch object will have results in it.
+        newsSearch.setSearchCompleteCallback(this, searchComplete, null);
+
+        // Specify search quer(ies)
+        newsSearch.execute('Barack Obama');
+
+        // Include the required Google branding
+        google.search.Search.getBranding('branding');
+      }
+
+      // Set a callback to call your code when the page loads
+      google.setOnLoadCallback(onLoad);
+    </script>
+  </head>
+  <body style="font-family: Arial;border: 0 none;">
+    <div id="branding"  style="float: left;"></div><br />
+    <div id="content">Loading...</div>
+  </body>
+</html>
