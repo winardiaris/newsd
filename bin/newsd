@@ -217,18 +217,33 @@ function stop {
 	fi
 }
 
-function log1 {
-	cat $LOG"get_news_content.log"
-}
-function log2 {
+function log_url_media {
 	cat $LOG"get_url_from_media.log"
 }
-function log3 {
-	cat $LOG"get_news_content_rss.log"
+function log_url_priority {
+	cat $LOG"get_url_from_priority.log"
 }
-function log4 {
+function log_url_random {
+	cat $LOG"get_url_from_random.log"
+}
+function log_url_rss {
 	cat $LOG"get_url_from_rss.log"
 }
+
+function log_content_media {
+	cat $LOG"get_news_content_media.log"
+}
+function log_content_priority {
+	cat $LOG"get_news_content_priority.log"
+}
+function log_content_random {
+	cat $LOG"get_news_content_random.log"
+}
+function log_content_rss {
+	cat $LOG"get_news_content_rss.log"
+}
+
+
 
 if [ $KOMAN = "start" ] || [ $KOMAN = "START" ]
 then
@@ -236,18 +251,30 @@ then
 elif [ $KOMAN = "stop" ] || [ $KOMAN = "STOP" ]
 then
 	stop             
-elif [ $KOMAN = "log1" ] 
+elif [ $KOMAN = "log_url_media" ] 
 then
-	log1             
-elif [ $KOMAN = "log2" ]
+	log_url_media             
+elif [ $KOMAN = "log_url_priority" ]
 then
-	log2             
-elif [ $KOMAN = "log3" ] 
+	log_url_priority             
+elif [ $KOMAN = "log_url_random" ] 
 then
-	log3             
-elif [ $KOMAN = "log4" ]
+	log_url_random             
+elif [ $KOMAN = "log_url_rss" ]
 then
-	log4             
+	log_url_rss             
+elif [ $KOMAN = "log_content_media" ]
+then
+	log_content_media             
+elif [ $KOMAN = "log_content_priority" ]
+then
+	log_content_priority             
+elif [ $KOMAN = "log_content_random" ]
+then
+	log_content_random             
+elif [ $KOMAN = "log_content_rss" ]
+then
+	log_content_rss                        
 else
 	echo " $KOMAN tidak ada"
 fi

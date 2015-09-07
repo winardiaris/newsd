@@ -140,8 +140,8 @@ function url_get($url){
 	$array_url = array();
 	if(check_internet($url)==1){
 	
-	$media_name = get_media_from_url($url);
-	$media_url = Balikin(get_media_from_media_data($media_name,'media_url'));
+		$media_name = get_media_from_url($url);
+		$media_url = Balikin(get_media_from_media_data($media_name,'media_url'));
 	
 		//echo $url.PHP_EOL.PHP_EOL;
 		$html = file_get_html($url);
