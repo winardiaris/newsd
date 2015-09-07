@@ -64,6 +64,4 @@ elseif($op=='log_content_rss'){
 	echo '<hr><textarea class="form-control" rows="15">'.$a.'</textarea>';
 }
 
-
-
 ?>

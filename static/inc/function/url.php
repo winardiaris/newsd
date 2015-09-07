@@ -136,7 +136,7 @@
 	
 //}
 
-function url_get($url){
+function url_get($url,$url_from){
 	$array_url = array();
 	if(check_internet($url)==1){
 	
@@ -151,35 +151,41 @@ function url_get($url){
 			
 			if(exclude($url_get)==0){
 				if(valid_url($url_get)==1){
-					$enable = check_prefix_enable($url_get);
 					
-					if($enable>0){
-						array_push($array_url,$url_get);
-					}
+					url_save($url_get,$url_from);
+					//$enable = check_prefix_enable($url_get);
+					
+					//if($enable>0){
+						//array_push($array_url,$url_get);
+					//}
 				}
-				elseif($media_name=='cnn indonesia'){
+				
+				if($media_name=='cnn indonesia'){
 					$a = explode("//",$url_get);
 					$url_get = real_url($a[1]);
-					$enable = check_prefix_enable($url_get);
 					
-					if($enable>0){
-						array_push($array_url,$url_get);
-					}
+					url_save($url_get,$url_from);
+					//$enable = check_prefix_enable($url_get);
+					//if($enable>0){
+						//array_push($array_url,$url_get);
+					//}
 				}
-				else{
+				
+				if(valid_url($url_get)==0){
 					$url_get = real_url($media_url.$url_get);
-					$enable = check_prefix_enable($url_get);
+					url_save($url_get,$url_from);
 					
-					if($enable>0){
-						array_push($array_url,$url_get);
-					}
+					//$enable = check_prefix_enable($url_get);
+					//if($enable>0){
+						//array_push($array_url,$url_get);
+					//}
 				}
 			}
 		}
 		
 	}
-	$uniq = array_map('unserialize', array_unique(array_map('serialize', $array_url)));
-	return $uniq;
+	//$uniq = array_map('unserialize', array_unique(array_map('serialize', $array_url)));
+	//return $uniq;
 	
 }
 

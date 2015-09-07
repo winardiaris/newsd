@@ -8,28 +8,43 @@ include ("static/inc/simple_html_dom.php");
 $q = mysql_query("select * from `url_data` where `url_status`='0' order by rand() limit 50 ")or die(mysql_error());
 while($d=mysql_fetch_array($q)){
 	$url = Balikin($d['url']);
-	foreach(url_get($url) as $urls){
-		//echo $urls.PHP_EOL;
-		url_save($urls,1);		
-	}
+	url_get($url,1);
+	
+	//foreach(url_get($url) as $urls){
+		////echo $urls.PHP_EOL;
+		//url_save($urls,1);		
+	//}
+}
+
+$q2 = mysql_query("select * from `url_data` where `url_status`='1' order by rand() limit 50 ")or die(mysql_error());
+while($d2=mysql_fetch_array($q2)){
+	$url = Balikin($d2['url']);
+	url_get($url,1);
+	
+	//foreach(url_get($url) as $urls){
+		////echo $urls.PHP_EOL;
+		//url_save($urls,1);		
+	//}
 }
 
 
 foreach(media_list("order by rand() asc") as $media_list){
 	$media_url = $media_list[2];
-	foreach(url_get($media_url) as $urls){
-		//echo $urls.PHP_EOL;
-		url_save($urls,1);		
-	}
+	url_get($media_url,1);
+	//foreach(url_get($media_url) as $urls){
+		////echo $urls.PHP_EOL;
+		//url_save($urls,1);		
+	//}
 
 }
 
 foreach (priority_list("where `priority_status`='1' order by `priority_url` asc") as $list){
 	$url = Balikin($list[1]); //url get
-	foreach(url_get($url) as $urls){
-		//echo $urls.PHP_EOL;
-		url_save($urls,2);		
-	}
+	url_get($url,2);
+	//foreach(url_get($url) as $urls){
+		////echo $urls.PHP_EOL;
+		//url_save($urls,2);		
+	//}
 }
 $count="";
 foreach(rss_list("where `rss_status`='1' order by rand()") as $rss){
