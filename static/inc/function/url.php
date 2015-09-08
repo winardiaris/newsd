@@ -159,8 +159,7 @@ function url_get($url,$url_from){
 						//array_push($array_url,$url_get);
 					//}
 				}
-				
-				if($media_name=='cnn indonesia'){
+				elseif($media_name=='cnn indonesia'){
 					$a = explode("//",$url_get);
 					$url_get = real_url($a[1]);
 					
@@ -171,7 +170,7 @@ function url_get($url,$url_from){
 					//}
 				}
 				
-				if(valid_url($url_get)==0){
+				elseif(valid_url($url_get)==0){
 					$url_get = real_url($media_url.$url_get);
 					url_save($url_get,$url_from);
 					
