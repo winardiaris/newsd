@@ -137,55 +137,40 @@
 //}
 
 function url_get($url,$url_from){
-	$array_url = array();
 	if(check_internet($url)==1){
 	
 		$media_name = get_media_from_url($url);
 		$media_url = Balikin(get_media_from_media_data($media_name,'media_url'));
-	
-		//echo $url.PHP_EOL.PHP_EOL;
+		
+
 		$html = file_get_html($url);
 		foreach($html->find('a') as $data){
 			$url_get = $data->href;
-			//$url_get = real_url($url_get);
+			
 			
 			if(exclude($url_get)==0){
+				
 				if(valid_url($url_get)==1){
-					
+					//echo $url_get.PHP_EOL;
 					url_save($url_get,$url_from);
-					//$enable = check_prefix_enable($url_get);
-					
-					//if($enable>0){
-						//array_push($array_url,$url_get);
-					//}
 				}
 				elseif($media_name=='cnn indonesia'){
 					$a = explode("//",$url_get);
 					$url_get = real_url($a[1]);
-					
+					//echo $url_get.PHP_EOL;
 					url_save($url_get,$url_from);
-					//$enable = check_prefix_enable($url_get);
-					//if($enable>0){
-						//array_push($array_url,$url_get);
-					//}
 				}
-				
 				elseif(valid_url($url_get)==0){
 					$url_get = real_url($media_url.$url_get);
+					$url_get = str_replace("//","/",$url_get);
+					$url_get = str_replace(":/","://",$url_get);
+				
+					//echo $url_get.PHP_EOL;
 					url_save($url_get,$url_from);
-					
-					//$enable = check_prefix_enable($url_get);
-					//if($enable>0){
-						//array_push($array_url,$url_get);
-					//}
-				}
-			}
+				}		
+			}		
 		}
-		
-	}
-	//$uniq = array_map('unserialize', array_unique(array_map('serialize', $array_url)));
-	//return $uniq;
-	
+	}	
 }
 
 

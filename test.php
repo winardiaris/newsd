@@ -15,49 +15,48 @@ include ("static/inc/simple_html_dom.php");
 //}
 
 //test
-		$url="http://www.tribunnews.com";
+foreach(media_list("where `media_url` like '%tribun%' order by rand()") as $media_list){
+	$url = $media_list[2];
+		//$url="http://www.mediakaltara.com/";
 		$media_name = get_media_from_url($url);
 		$media_url = Balikin(get_media_from_media_data($media_name,'media_url'));
+		
 
 		$html = file_get_html($url);
 		foreach($html->find('a') as $data){
 			$url_get = $data->href;
-			//$url_get = real_url($url_get);
 			
-			//if(exclude($url_get)==0){
-				//if(valid_url($url_get)==1){
-					
-					//url_save($url_get,$url_from);
-					////$enable = check_prefix_enable($url_get);
-					
-					////if($enable>0){
-						////array_push($array_url,$url_get);
-					////}
-				//}
-				//elseif($media_name=='cnn indonesia'){
-					//$a = explode("//",$url_get);
-					//$url_get = real_url($a[1]);
-					
-					//url_save($url_get,$url_from);
-					////$enable = check_prefix_enable($url_get);
-					////if($enable>0){
-						////array_push($array_url,$url_get);
-					////}
-				//}
+			
+			if(exclude($url_get)==0){
+				$bb = explode("://",$url_get);
 				
-				//elseif(valid_url($url_get)==0){
-					//$url_get = real_url($media_url.$url_get);
+				if(valid_url($url_get)==1){
+					
+					echo $url_get.PHP_EOL;
+					//url_save($url_get,$url_from);
+				}
+				elseif($media_name=='cnn indonesia'){
+					$a = explode("//",$url_get);
+					$url_get = real_url($a[1]);
+					echo $url_get.PHP_EOL;
+					
+					//url_save($url_get,$url_from);
+				}
+				elseif(valid_url($url_get)==0){
+					$url_get = real_url($media_url.$url_get);
 					//url_save($url_get,$url_from);
 					
-					////$enable = check_prefix_enable($url_get);
-					////if($enable>0){
-						////array_push($array_url,$url_get);
-					////}
-				//}
-			//}
-			echo $url_get.PHP_EOL;
+					$url_get = str_replace("//","/",$url_get);
+					$url_get = str_replace(":/","://",$url_get);
+				
+					echo $url_get.PHP_EOL;
+				}
+				
+				
+			}
+			
 		}
 		echo $media_name."=>".$media_url.PHP_EOL;
 
-
+}
 ?>
