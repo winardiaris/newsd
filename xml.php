@@ -20,7 +20,13 @@ if(isset($_GET['date'])){
 
 if(isset($_GET['limit'])){
 	$limit = ifset('limit');
-	$LIMIT ="limit $limit";	
+	
+	if($limit!="-1"){
+		$LIMIT ="limit $limit";	
+	}
+	else{
+		$LIMIT=" limit 3000";
+	}
 }
 
 $WHERE = substr($WHERE,0,(strlen($WHERE)-5));
