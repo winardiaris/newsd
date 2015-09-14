@@ -21,11 +21,11 @@ if(isset($_GET['date'])){
 if(isset($_GET['limit'])){
 	$limit = ifset('limit');
 	
-	if($limit!="-1"){
+	if($limit!="-1" and $limit > "-1"){
 		$LIMIT ="limit $limit";	
 	}
-	else{
-		$LIMIT=" limit 3000";
+	elseif($limit <="-1"){
+		$LIMIT=" limit 2000";
 	}
 }
 
