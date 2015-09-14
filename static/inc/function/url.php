@@ -276,7 +276,7 @@ function exclude($url){
 	$found=0;
 	$qry = mysql_query("select * from `exclude`");
 	while($data=mysql_fetch_row($qry)){
-	   $pos = strpos($url,$data[0]);
+	   $pos = strpos($url,$data[1]);
 		if($pos ===  false){
 			$found +=0;
 		}
@@ -285,7 +285,6 @@ function exclude($url){
 		}
 	}
 	return $found;
-
 }
 
 ?>
