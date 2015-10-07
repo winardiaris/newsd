@@ -94,7 +94,7 @@ function Balikins($str){
 	return $str;
 }
 function UbahXXX($str){
-	$str = trim(htmlentities(htmlspecialchars($str)));
+	$str = trim($str);
 	$search = array ("'\''",
 						"'%'",
 						"'@'",
@@ -106,6 +106,12 @@ function UbahXXX($str){
 						"'>'",
 						"'\('",
 						"'\)'",
+						"'\{'",
+						"'\}'",
+						"'\*'",
+						"'&'",
+						"'\^'",
+						"'\"'",
 						"';'",
 						"'-'",
 						"'_'",
@@ -114,30 +120,20 @@ function UbahXXX($str){
 						"'\.'",
 						"':'",
 						"'  '",
+						"'\\$'",
+						"'#'",
+						"'~'",
+						"'`'",
+						"'\+'",
+						"'='",
+						"'\?'",
+						"'\|'",
+						"'\\\'",
+						"'/'",
 						"'\,'"
 					);
 
-	$replace = array (" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" ",
-						" "
-					);
+	$replace = array (" ");
 
 	$str = preg_replace($search,$replace,$str);
 	return $str;
